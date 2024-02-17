@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 13:33:00 by nmandakh          #+#    #+#              #
-#    Updated: 2024/02/17 13:49:20 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/02/17 18:13:14 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ PRINTF  = ./libraries/ft_printf/ft_printf.a
 
 SRCS	= push_swap.c list_prep.c check.c utils.c \
 swap_operations.c push_operations.c rotate_operations.c reverse_rotate_operations.c \
-sort.c
+sort.c push_load.c
 
 OBJS	= $(SRCS:.c=.o)
 

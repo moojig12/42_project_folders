@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:31:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 17:48:36 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:12:08 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@ void	print_list(t_stack *stack)
 {
 	int	i;
 
-	i = 0
+	i = 0;
 	while (stack->next != NULL)
 	{
 		printf("position:%i | data:%i", i, stack->content);
 		i++;
 		stack = stack->next;
 	}
+}
+
+void	load_array(char **argv)
+{
+	printf("%s\n", argv[0]);
+	return ;
 }
 
 int	main(int argc, char **argv)
@@ -35,14 +41,14 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		load_array(argv);
 	else
-		load_list(A, argc, argv);
+		load_list(&A, argc, argv);
 	print_list(A);
-	if (!check_sort(A))
-	{
-		if (ft_lstsize <= 10)
-			short_sort(&A, &B);
-		else
-			sort(&A, &B);
-	}
+	// if (!check_sort(A))
+	// {
+	// 	if (ft_lstsize <= 10)
+	// 		short_sort(&A, &B);
+	// 	else
+	// 		sort(&A, &B);
+	// }
 	return (0);
 }
