@@ -6,9 +6,13 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:42:32 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 15:02:36 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:45:42 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	sort(t_stack **A, t_stack **B)
+{
+	return ;
+}

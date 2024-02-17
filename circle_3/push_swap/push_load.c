@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   push_load.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 13:55:42 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 15:23:12 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/02/17 15:16:26 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/17 17:45:59 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+void	load_list(t_stack **A, int argc, char **argv)
 {
-	t_list	*new;
+	t_stack	*new;
+	int		buff;
+	int		i;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	i = 0;
+	new = NULL;
+	while (argv[i])
+	{
+		if (!A)
+		{
+			new = ft_lstnew(ft_atoi(argv[i]));
+			A = &new;
+			i++;
+		}
+		else
+		{
+			new = ft_lstnew(ft_atoi(argv[i]));
+			ft_lstadd_back(A, new);
+			i++;
+		}
+	}
 }

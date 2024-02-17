@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:32:32 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 14:29:53 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:30:07 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack {
 	// struct s_stack	*prev;
 }	t_stack;
 
+void	load_list(t_stack **A, int argc, char **argv);
 int		swap(t_stack **stack);
 void	swap_a(t_stack **stack_a);
 void	swap_b(t_stack **stack_b);

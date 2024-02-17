@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:49:46 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 14:40:49 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:45:36 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ int	push(t_stack **dest, t_stack **origin)
 
 	if (!origin)
 		return (1);
-	else if (!dest)
+	if (!dest)
 	{
-		ptr = *origin;
-		ptr->next = NULL;
-		dest = ft_lstnew(ptr->content);
+		ptr = ft_lstnew((*origin)->content);
+		free(*origin);
+		dest = &ptr;
+		return (0);
 	}
 	else
 	{
-		ptr = *origin;
+		ptr = ft_lstnew((*origin)->content);
+		free(*origin);
 		ptr->next = *dest;
 		return (0);
 	}
