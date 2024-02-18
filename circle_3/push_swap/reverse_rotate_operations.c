@@ -15,18 +15,18 @@
 void	reverse_a(t_stack **A)
 {
 	reverse(A);
-	ft_printf("rra\n");
+	printf("rra\n");
 }
 
 void	reverse_b(t_stack **B)
 {
 	reverse(B);
-	ft_printf("rrb\n");
+	printf("rrb\n");
 }
 
 void	reverse_reverse(t_stack **A, t_stack **B)
 {
 	reverse(A);
 	reverse(B);
-	ft_printf("rrr\n");
+	printf("rrr\n");
 }

@@ -16,11 +16,11 @@ void	print_list(t_stack *stack)
 {
 	int	i;
 
-	i = 0
+	i = 0;
 	while (stack->next != NULL)
 	{
-		printf("position:%i | data:%i", i, stack->content);
 		i++;
+		printf("position:%i | data:%i\n", i, stack->content);
 		stack = stack->next;
 	}
 }
@@ -33,16 +33,22 @@ int	main(int argc, char **argv)
 	A = NULL;
 	B = NULL;
 	if (argc == 2)
-		load_array(argv);
+		load_array(&A, argv);
 	else
-		load_list(A, argc, argv);
+		load_list(&A, argc, argv);
 	print_list(A);
-	if (!check_sort(A))
+	if (check_sort(A) == 0)
 	{
-		if (ft_lstsize <= 10)
+		if (ft_lstsize((t_list *)A) <= 10)
+		{
+			printf("clause 1\n");
 			short_sort(&A, &B);
+		}
 		else
+		{
+			printf("clause 2\n");
 			sort(&A, &B);
+		}
 	}
 	return (0);
 }

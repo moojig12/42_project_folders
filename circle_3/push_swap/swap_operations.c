@@ -15,18 +15,18 @@
 void swap_a(t_stack **stack_a)
 {
 	swap(stack_a);
-	ft_printf("sa\n");
+	printf("sa\n");
 }
 
 void swap_b(t_stack **stack_b)
 {
 	swap(stack_b);
-	ft_printf("sb\n");
+	printf("sb\n");
 }
 
 void swap_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
-	ft_printf("ss\n");
+	printf("ss\n");
 }
