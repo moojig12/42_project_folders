@@ -17,7 +17,7 @@ CFLAGS	= -Wall -Werror -Wextra
 
 LIBFT	= ./libraries/Libft/libft.a
 
-PRINTF  = ./libraries/ft_printf/ft_printf.a
+PRINTF  = ./libraries/printf/printf.a
 
 SRCS	= push_swap.c list_prep.c check.c utils.c \
 swap_operations.c push_operations.c rotate_operations.c reverse_rotate_operations.c \
@@ -29,12 +29,12 @@ all:		$(NAME)
 
 $(NAME): $(OBJS)
 			make -C ./libraries/Libft
-			make -C ./libraries/ft_printf
+			make -C ./libraries/printf
 			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 
 clean:
 			make clean -C ./libraries/Libft
-			make clean -C ./libraries/ft_printf
+			make clean -C ./libraries/printf
 			rm -rf $(OBJS)
 			
 fclean:		clean

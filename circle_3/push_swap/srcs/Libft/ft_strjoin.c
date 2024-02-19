@@ -51,13 +51,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_loop(new_string, s1, s2);
 	return (new_string);
 }
-
-int	main(void)
-{
-	char	*s1 = "meow";
-	char	*s2 = "help";
-	char	*new;
-
-	new = ft_strjoin(s1, s2);
-	printf("%s", new);
-}

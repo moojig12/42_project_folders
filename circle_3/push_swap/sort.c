@@ -14,5 +14,11 @@
 
 void	sort(t_stack **A, t_stack **B)
 {
+	t_stack	*temp_a;
+	t_stack *temp_b;
+
+	temp_a = *A;
+	temp_b = *B;
+	printf("%i, %i\n", temp_a->content, temp_b->content);
 	return ;
 }
