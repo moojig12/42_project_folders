@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_operations.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 14:12:13 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/19 20:44:29 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/20 17:31:18 by mdomnik           #+#    #+#             */
+/*   Updated: 2024/02/19 20:10:14 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_a(t_stack **A, t_stack **B)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	ft_printf("pushed %i to A\n", (*B)->content);
-	push(A, B);
-	ft_printf("pa\n");
-}
+	t_list	*temp;
 
-void	push_b(t_stack **A, t_stack **B)
-{
-	ft_printf("pushed %i to B\n", (*A)->content);
-	push(B, A);
-	ft_printf("pb\n");
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = temp;
+	}
+	free(*lst);
 }

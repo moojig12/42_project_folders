@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:12:08 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 17:45:46 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:47:59 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	short_sort(t_stack **A, t_stack **B)
 
 	temp_a = *A;
 	temp_b = *B;
-	printf("Head element: A-%i, B-NULL->p\n", temp_a->content, temp_b);
+	ft_printf("Head element: A-%i, B-NULL->p\n", temp_a->content, temp_b);
 	return ;
 }

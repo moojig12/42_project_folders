@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 16:19:30 by nmandakh          #+#    #+#              #
-#    Updated: 2023/12/06 16:32:58 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/02/19 17:50:01 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC		=	cc
 RM		=	rm -f
 CFLAGS	=	-Wall -Werror -Wextra -I.
 
-NAME	=	libftprintf.a
+NAME	=	printf.a
 
 all:		$(NAME)
 

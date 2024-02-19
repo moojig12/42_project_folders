@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:49:46 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/17 17:45:36 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:37:02 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	swap(t_stack **stack)
 
 	if (!stack)
 	{	
-		printf("Stack doesn't exist.\n");
+		ft_printf("Stack doesn't exist.\n");
 		return (1);
 	}
 	else if (ft_lstsize((t_list *)*stack) == 1)
@@ -37,24 +37,22 @@ int	swap(t_stack **stack)
 
 int	push(t_stack **dest, t_stack **origin)
 {
-	t_stack	*ptr;
+	t_stack *ptr;
+	t_stack *new_head;
 
-	if (!origin)
+	if (!origin || !*origin)
 		return (1);
-	if (!dest)
-	{
-		ptr = (t_stack *)ft_lstnew((*origin)->content);
-		free(*origin);
-		dest = &ptr;
-		return (0);
-	}
+
+	new_head = (*origin)->next;
+	ptr = (t_stack *)ft_lstnew((*origin)->content);
+	if (!ptr)
+		return (1);
+	ft_lstadd_front((t_list **)dest, (t_list *)ptr);
+	if (new_head)
+		*origin = new_head;
 	else
-	{
-		ptr = (t_stack *)ft_lstnew((*origin)->content);
-		free(*origin);
-		ptr->next = *dest;
-		return (0);
-	}
+		ft_lstclear((t_list **)origin, free);
+	return (0);
 }
 
 int	rotate(t_stack **stack)
@@ -62,30 +60,18 @@ int	rotate(t_stack **stack)
 	t_stack	*ptr;
 	t_stack *ptr_prev;
 
-	ptr = *stack;
-	if (!stack)
-	{
-		printf("Stack doesn't exist.\n");
+	if (!stack || !*stack || !(*stack)->next)
 		return (1);
-	}
+	ptr = *stack;
 	while (ptr->next != NULL)
 	{
 		ptr_prev = ptr;
 		ptr = ptr->next;
 	}
-	if (!ptr_prev)
-	{
-		printf("Stack only has 1 node.\n");
-		return (1);
-	}
-	else if (ptr_prev)
-	{
-		ptr_prev->next = NULL;
-		ptr->next = *stack;
-		return (0);
-	}
-	else
-		return (1);
+	ptr_prev->next = NULL;
+	ptr->next = *stack;
+	*stack = ptr;
+	return (0);
 }
 
 int	reverse(t_stack **stack)
@@ -96,6 +82,7 @@ int	reverse(t_stack **stack)
 
 	head = *stack;
 	last_prev = NULL;
+	last = *stack;
 	while (last->next != NULL)
 	{
 		last_prev = last;
@@ -103,7 +90,7 @@ int	reverse(t_stack **stack)
 	}
 	if (!last_prev)
 	{
-		printf("Stack only has 1 node.\n");
+		ft_printf("Stack only has 1 node.\n");
 		return (1);
 	}
 	else if (last_prev)

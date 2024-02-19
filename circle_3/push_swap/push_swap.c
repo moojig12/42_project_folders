@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:31:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/19 17:39:34 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:30:51 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ void	print_list(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (stack->next != NULL)
+	if (!stack)
+	{
+		ft_printf("list empty\n");
+		return ;
+	}
+	while (stack)
 	{
 		i++;
-		printf("position:%i | data:%i\n", i, stack->content);
+		ft_printf("position:%i | data:%i\n", i, stack->content);
 		stack = stack->next;
 	}
-}
-
-void	load_array(char **argv)
-{
-	printf("%s\n", argv[0]);
-	return ;
 }
 
 int	main(int argc, char **argv)
@@ -45,14 +44,14 @@ int	main(int argc, char **argv)
 	print_list(A);
 	if (check_sort(A) == 0)
 	{
-		if (ft_lstsize((t_list *)A) <= 10)
+		if (ft_lstsize((t_list *)A) <= 5)
 		{
-			printf("clause 1\n");
+			ft_printf("clause 1\n");
 			short_sort(&A, &B);
 		}
 		else
 		{
-			printf("clause 2\n");
+			ft_printf("clause 2\n");
 			sort(&A, &B);
 		}
 	}

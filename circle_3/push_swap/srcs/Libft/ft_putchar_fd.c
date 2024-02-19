@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_operations.c                                :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdomnik <mdomnik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 14:15:00 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/19 17:47:59 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/19 17:34:07 by mdomnik           #+#    #+#             */
+/*   Updated: 2023/11/19 17:36:01 by mdomnik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	rotate_a(t_stack **A)
+void	ft_putchar_fd(char c, int fd)
 {
-	rotate(A);
-	ft_printf("ra\n");
-}
-
-void	rotate_b(t_stack **B)
-{
-	rotate(B);
-	ft_printf("rb\n");
-}
-
-void	rotate_rotate(t_stack **A, t_stack **B)
-{
-	rotate(A);
-	rotate(B);
-	ft_printf("rr\n");
+	write(fd, &c, 1);
 }

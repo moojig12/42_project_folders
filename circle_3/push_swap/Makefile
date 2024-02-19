@@ -6,38 +6,41 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 13:33:00 by nmandakh          #+#    #+#              #
-#    Updated: 2024/02/17 18:13:14 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/02/19 19:29:46 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 
-LIBFT	= ./libraries/Libft/libft.a
+LIBFT	= ./srcs/Libft/libft.a
 
-PRINTF  = ./libraries/printf/printf.a
+PRINTF  = ./srcs/ft_printf/printf.a
 
-SRCS	= push_swap.c list_prep.c check.c utils.c \
+SRCS	= push_swap.c push_swap_utils.c \
 swap_operations.c push_operations.c rotate_operations.c reverse_rotate_operations.c \
-sort.c push_load.c
+sort.c short_sort.c push_load.c
 
 OBJS	= $(SRCS:.c=.o)
 
 all:		$(NAME)
 
 $(NAME): $(OBJS)
-			make -C ./libraries/Libft
-			make -C ./libraries/printf
+			make -C ./srcs/Libft
+			make bonus -C ./srcs/Libft
+			make -C ./srcs/ft_printf
 			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 
 clean:
-			make clean -C ./libraries/Libft
-			make clean -C ./libraries/printf
+			make clean -C ./srcs/Libft
+			make clean -C ./srcs/ft_printf
 			rm -rf $(OBJS)
 			
 fclean:		clean
+			make fclean -C ./srcs/Libft
+			make fclean -C ./srcs/ft_printf
 			rm -rf $(NAME)
 
 re:			fclean all
