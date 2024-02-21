@@ -19,7 +19,7 @@ int	swap(t_stack **stack)
 
 	if (!stack)
 	{	
-		ft_printf("Stack doesn't exist.\n");
+		printf("Stack doesn't exist.\n");
 		return (1);
 	}
 	else if (ft_lstsize((t_list *)*stack) == 1)
@@ -27,8 +27,7 @@ int	swap(t_stack **stack)
 	else
 	{
 		first = *stack;
-		second = *stack;
-		second = second->next;
+		second = (*stack)->next;
 		first->next = second->next;
 		second->next = first;
 		return (0);
@@ -58,21 +57,21 @@ int	push(t_stack **dest, t_stack **origin)
 int	rotate(t_stack **stack)
 {
 	t_stack	*last;
-	t_stack	*second;
+	t_stack	*ptr;
 	t_stack	*head;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return (1);
-	second = *stack;
-	head = *stack;
+	head = (*stack)->next;
+	ptr = *stack;
 	last = *stack;
-	while (last)
+	while (last->next != NULL)
 	{
 		last = last->next;
 	}
-	last->next = head;
-	head->next = NULL;
-	*stack = second;
+	ptr->next = NULL;
+	last->next = ptr;
+	*stack = head;
 	return (0);
 }
 
@@ -94,8 +93,7 @@ int	reverse(t_stack **stack)
 	*stack = ptr;
 	return (0);
 }
-
-int	check_sort(t_stack *stack)
+int	reverse_sorted(t_stack *stack)
 {
 	int	i;
 
@@ -104,8 +102,21 @@ int	check_sort(t_stack *stack)
 	{
 		i = stack->content;
 		stack = stack->next;
-		if (i > stack->content)
+		if (i < stack->content)
 			return (0);
 	}
 	return (1);
+}
+
+int check_sort(t_stack *stack) {
+	int i;
+
+	while (stack != NULL && stack->next != NULL)
+	{
+		i = stack->content;
+		stack = stack->next;
+		if (i > stack->content)
+			return 0;
+	}
+	return 1;
 }

@@ -14,9 +14,14 @@
 
 void	load_array(t_stack **A, char **argv)
 {
-	ft_printf("%s", argv[0]);
-	ft_printf("%p\n", A);
+	printf("%s", argv[0]);
+	printf("%p\n", A);
 	return ;
+}
+
+void	prelim(char *s)
+{
+	printf("prelim:%s\n", s);
 }
 
 void	load_list(t_stack **A, int argc, char **argv)
