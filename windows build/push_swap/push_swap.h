@@ -28,6 +28,7 @@ typedef struct s_stack {
 
 void	print_list(t_stack *stack);
 int		check_sort(t_stack *stack);
+int		reverse_sorted(t_stack *stack);
 void	short_sort(t_stack **A, t_stack **B);
 void	bubble_sort(t_stack **A, t_stack **B);
 void	nanni_sort(t_stack **A, t_stack **B);

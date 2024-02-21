@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	print_list(A);
 	if (check_sort(A) == 0)
 	{
-		if (ft_lstsize((t_list *)A) <= 2)
+		if (ft_lstsize((t_list *)A) <= 3)
 		{
 			printf("clause 1\n");
 			short_sort(&A, &B);

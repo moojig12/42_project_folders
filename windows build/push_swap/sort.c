@@ -181,7 +181,7 @@ void	bubble_sort(t_stack **A, t_stack **B)
 			push_b(A, B);
 		else if (ft_lstlast((t_list *)*A)->content == low)
 		{
-			reverse_a(A);
+			rotate_a(A);
 			push_b(A, B);
 		}
 		else
@@ -199,43 +199,49 @@ void	bubble_sort(t_stack **A, t_stack **B)
 
 // }
 
-void	sort_sides(t_stack **A, t_stack **B)
+/* void	sort_sides(t_stack **A, t_stack **B)
 {
 	int	high;
 	int	low;
+	int i = 0;
 
 	print_both(*A, *B);
 	printf("%p\n", *A);
 	low = get_low(*B);
 	high = get_high(*B);
-	while (check_sort(*B) == 0)
+	while (reverse_sorted(*B) == 0)
 	{
 		if ((*B)->content == low && (*B)->next->content == high)
 		{
-			printf("\tclause 1\n");
+			// printf("\tclause 1\n");
 			rotate_b(B);
 		}
 		else if ((*B)->content == high && (*B)->next->content == low)
 		{
-			printf("\tclause 1\n");
+			// printf("\tclause 1\n");
 			swap_b(B);
 			rotate_b(B);
 		}
 		else if ((*B)->content > (*B)->next->content)
 		{
-			printf("here: %i, %i\n", (*B)->content, (*B)->next->content);
-			printf("\tclause 2\n");
+			// printf("\tclause 2\n");
 			rotate_b(B);
-			// print_list(*B);
 		}
 		else if ((*B)->content < (*B)->next->content)
 		{
-			printf("\tclause 3\n");
+			// printf("\tclause 3\n");
 			swap_b(B);
 			rotate_b(B);
 		}
+		i++;
 	}
+	printf("moves in sort B: %i\n", i);
 	return ;
+} */
+
+void	group_sides(t_stack **A, t_stack **B)
+{
+	
 }
 
 void	nanni_sort(t_stack **A, t_stack **B)
@@ -251,7 +257,6 @@ void	nanni_sort(t_stack **A, t_stack **B)
 	printf("size: %i\nmedian: %i\n", size, median);
 	while (ft_lstsize((t_list *)*A) - 1 > size / 2)
 	{
-		printf("int: %i | median: %i | size: %i\n", (*A)->content, median, ft_lstsize((t_list *)*A));
 		ptr = *A;
 		if (ptr->content < median)
 		{
@@ -265,6 +270,7 @@ void	nanni_sort(t_stack **A, t_stack **B)
 		}
 		i++;
 	}
-	sort_sides(A, B);
+	printf("pushed: %i\n", i);
+	// sort_sides(A, B);
 	print_both(*A, *B);
 }
