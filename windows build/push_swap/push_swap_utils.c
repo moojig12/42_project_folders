@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	swap(t_stack **stack)
+/* int	swap(t_stack **stack)
 {
 	t_stack	*second;
 	t_stack	*first;
@@ -32,6 +32,20 @@ int	swap(t_stack **stack)
 		second->next = first;
 		return (0);
 	}
+} */
+
+int swap(t_stack **stack) {
+    if (!*stack || !(*stack)->next) {
+        printf("Stack is empty or has less than two elements.\n");
+        return 1;
+    } else {
+        t_stack *first = *stack;
+        t_stack *second = (*stack)->next;
+        first->next = second->next;
+        second->next = first;
+        *stack = second; // Update stack pointer to point to the new head
+        return 0;
+    }
 }
 
 int	push(t_stack **dest, t_stack **origin)
@@ -41,7 +55,6 @@ int	push(t_stack **dest, t_stack **origin)
 
 	if (!origin || !*origin)
 		return (1);
-
 	new_head = (*origin)->next;
 	ptr = (t_stack *)ft_lstnew((*origin)->content);
 	if (!ptr)
@@ -50,32 +63,11 @@ int	push(t_stack **dest, t_stack **origin)
 	if (new_head)
 		*origin = new_head;
 	else
-		ft_lstclear((t_list **)origin, free);
+		printf("wtf\n");
 	return (0);
 }
 
 int	rotate(t_stack **stack)
-{
-	t_stack	*last;
-	t_stack	*ptr;
-	t_stack	*head;
-
-	if (!stack || !*stack || !(*stack)->next)
-		return (1);
-	head = (*stack)->next;
-	ptr = *stack;
-	last = *stack;
-	while (last->next != NULL)
-	{
-		last = last->next;
-	}
-	ptr->next = NULL;
-	last->next = ptr;
-	*stack = head;
-	return (0);
-}
-
-int	reverse(t_stack **stack)
 {
 	t_stack	*ptr;
 	t_stack *ptr_prev;
@@ -93,6 +85,28 @@ int	reverse(t_stack **stack)
 	*stack = ptr;
 	return (0);
 }
+
+int	reverse(t_stack **stack)
+{
+	t_stack	*last;
+	t_stack	*second;
+	t_stack	*head;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return (1);
+	second = *stack;
+	head = *stack;
+	last = *stack;
+	while (last->next != NULL)
+	{
+		last = last->next;
+	}
+	last->next = head;
+	head->next = NULL;
+	*stack = second;
+	return (0);
+}
+
 int	reverse_sorted(t_stack *stack)
 {
 	int	i;
@@ -111,12 +125,12 @@ int	reverse_sorted(t_stack *stack)
 int check_sort(t_stack *stack) {
 	int i;
 
-	while (stack != NULL && stack->next != NULL)
+	while (stack->next != NULL)
 	{
 		i = stack->content;
-		stack = stack->next;
-		if (i > stack->content)
+		if (i > stack->next->content)
 			return 0;
+		stack = stack->next;
 	}
 	return 1;
 }

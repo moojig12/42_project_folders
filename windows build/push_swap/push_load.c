@@ -33,7 +33,7 @@ void	load_list(t_stack **A, int argc, char **argv)
 	new = NULL;
 	while (argv[i] && i < argc)
 	{
-		prelim(argv[i]);
+		// prelim(argv[i]);
 		if (!A)
 		{
 			new = (t_stack *)ft_lstnew(ft_atoi(argv[i]));

@@ -215,10 +215,18 @@ void	sort_sides(t_stack **A, t_stack **B)
 			printf("\tclause 1\n");
 			rotate_b(B);
 		}
+		else if ((*B)->content == high && (*B)->next->content == low)
+		{
+			printf("\tclause 1\n");
+			swap_b(B);
+			rotate_b(B);
+		}
 		else if ((*B)->content > (*B)->next->content)
 		{
+			printf("here: %i, %i\n", (*B)->content, (*B)->next->content);
 			printf("\tclause 2\n");
 			rotate_b(B);
+			// print_list(*B);
 		}
 		else if ((*B)->content < (*B)->next->content)
 		{
@@ -232,6 +240,7 @@ void	sort_sides(t_stack **A, t_stack **B)
 
 void	nanni_sort(t_stack **A, t_stack **B)
 {
+	t_stack	*ptr;
 	int	median;
 	int	size;
 	int	i;
@@ -243,13 +252,17 @@ void	nanni_sort(t_stack **A, t_stack **B)
 	while (ft_lstsize((t_list *)*A) - 1 > size / 2)
 	{
 		printf("int: %i | median: %i | size: %i\n", (*A)->content, median, ft_lstsize((t_list *)*A));
-		if ((*A)->content < median)
+		ptr = *A;
+		if (ptr->content < median)
 		{
 			push_b(A, B);
 			// small_to_bottom(B);
+			// print_both(*A, *B);
 		}
 		else
+		{
 			rotate_a(A);
+		}
 		i++;
 	}
 	sort_sides(A, B);

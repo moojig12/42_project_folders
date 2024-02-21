@@ -66,7 +66,7 @@ int	rotate(t_stack **stack)
 	second = *stack;
 	head = *stack;
 	last = *stack;
-	while (last)
+	while (last->next != NULL)
 	{
 		last = last->next;
 	}
