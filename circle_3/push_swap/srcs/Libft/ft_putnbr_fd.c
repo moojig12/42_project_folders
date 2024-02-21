@@ -3,30 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdomnik <mdomnik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 17:53:53 by mdomnik           #+#    #+#             */
-/*   Updated: 2023/11/19 18:05:38 by mdomnik          ###   ########.fr       */
+/*   Created: 2023/11/20 16:26:30 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/21 18:14:58 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	long int	longy;
+	char	c;
 
-	longy = n;
-	if (longy < 0)
+	if (nb == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+	}
+	else if (nb < 0)
 	{
 		ft_putchar_fd('-', fd);
-		longy *= -1;
+		ft_putnbr_fd(-nb, fd);
 	}
-	if (longy > 9)
+	else if (nb > 9)
 	{
-		ft_putnbr_fd((longy / 10), fd);
-		longy %= 10;
+		ft_putnbr_fd(nb / 10, fd);
+		c = nb % 10 + 48;
+		ft_putchar_fd(c, fd);
 	}
-	if (longy <= 9)
-		ft_putchar_fd((longy + 48), fd);
+	else
+	{
+		c = nb + 48;
+		ft_putchar_fd(c, fd);
+	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:52:43 by nmandakh          #+#    #+#             */
-/*   Updated: 2023/12/19 15:43:28 by nmandakh         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:14:23 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_loop(new_string, s1, s2);
 	return (new_string);
 }
+/* 
+int	main(void)
+{
+	char	*s1 = "meow";
+	char	*s2 = "help";
+	char	*new;
+
+	new = ft_strjoin(s1, s2);
+	printf("%s", new);
+} */

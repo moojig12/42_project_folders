@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:18:53 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/01/23 15:28:16 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:31:53 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	update_up(t_hook *par, int y, int x, int *pos)
 		lose(par, pos);
 	else if (par->game->map.layout[y - 1][x] == 'C')
 		give_coin(par->game);
-	put_grass(par->game, par->sprites, y, x);
+	if (par->game->map.layout[y][x] == 'E')
+		put_exit(par->game, par->sprites, y, x);
+	else
+		put_grass(par->game, par->sprites, y, x);
 	par->game->player_pos[0]--;
 	par->game->last_movement = UP;
 	par->game->movement++;
@@ -35,7 +38,10 @@ void	update_down(t_hook *par, int y, int x, int *pos)
 		lose(par, pos);
 	else if (par->game->map.layout[y + 1][x] == 'C')
 		give_coin(par->game);
-	put_grass(par->game, par->sprites, y, x);
+	if (par->game->map.layout[y][x] == 'E')
+		put_exit(par->game, par->sprites, y, x);
+	else
+		put_grass(par->game, par->sprites, y, x);
 	par->game->player_pos[0]++;
 	par->game->last_movement = DOWN;
 	par->game->movement++;
@@ -50,7 +56,10 @@ void	update_left(t_hook *par, int y, int x, int *pos)
 		lose(par, pos);
 	else if (par->game->map.layout[y][x - 1] == 'C')
 		give_coin(par->game);
-	put_grass(par->game, par->sprites, y, x);
+	if (par->game->map.layout[y][x] == 'E')
+		put_exit(par->game, par->sprites, y, x);
+	else
+		put_grass(par->game, par->sprites, y, x);
 	par->game->player_pos[1]--;
 	par->game->last_movement = LEFT;
 	par->game->movement++;
@@ -65,7 +74,10 @@ void	update_right(t_hook *par, int y, int x, int *pos)
 		lose(par, pos);
 	else if (par->game->map.layout[y][x + 1] == 'C')
 		give_coin(par->game);
-	put_grass(par->game, par->sprites, y, x);
+	if (par->game->map.layout[y][x] == 'E')
+		put_exit(par->game, par->sprites, y, x);
+	else
+		put_grass(par->game, par->sprites, y, x);
 	par->game->player_pos[1]++;
 	par->game->last_movement = RIGHT;
 	par->game->movement++;
@@ -74,7 +86,8 @@ void	update_right(t_hook *par, int y, int x, int *pos)
 
 void	update_pos(t_hook *par, int move, int y, int x)
 {
-	par->game->map.layout[y][x] = '0';
+	if (par->game->map.layout[y][x] != 'E')
+		par->game->map.layout[y][x] = '0';
 	if (move == UP && par->game->pos[1] != 1)
 		update_up(par, y, x, par->game->pos);
 	else if (move == DOWN && par->game->pos[3] != 1)

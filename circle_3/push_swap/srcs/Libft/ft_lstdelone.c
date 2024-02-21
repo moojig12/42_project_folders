@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 17:26:53 by mdomnik           #+#    #+#             */
-/*   Updated: 2024/02/19 20:16:48 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/21 16:39:00 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/21 17:53:09 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	del(lst);
+	del(lst->content);
+	free(lst);
 }

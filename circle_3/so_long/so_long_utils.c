@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:47:43 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/01/23 15:34:58 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:47:39 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	open_file(int *file, char *file_name)
 {
 	(*file) = open(file_name, O_RDONLY);
 	if ((*file) == -1)
-		perror("Map could not be opened");
+		ft_printf("Map could not be opened");
 	return ;
 }
 
@@ -53,4 +53,41 @@ int	sl_strchr(const char *s, int c)
 		i++;
 	}
 	return (0);
+}
+
+void	count_coins(t_hook *par, int *pos)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	par->game->total_coins = 0;
+	while (i < par->game->map.height)
+	{
+		while (j < par->game->map.width)
+		{
+			if (par->game->map.buff[i][j] == 'C')
+				par->game->total_coins++;
+			check_for_invalid_char(par->game->map.buff[i][j], par, pos);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+char	**duplicate_map(t_hook *par)
+{
+	char	**result;
+	int		i;
+
+	i = 0;
+	result = (char **)malloc(par->game->map.height * sizeof(char *));
+	while (i < par->game->map.height)
+	{
+		result[i] = ft_strdup(par->game->map.layout[i]);
+		i++;
+	}
+	return (result);
 }

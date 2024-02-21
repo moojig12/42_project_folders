@@ -6,65 +6,53 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 16:49:11 by nmandakh          #+#    #+#              #
-#    Updated: 2024/01/23 15:29:52 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/01/29 17:08:12 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PRINTF = srcs/ft_printf/ft_print_char.c \
-		srcs/ft_printf/ft_print_digit.c \
-		srcs/ft_printf/ft_print_pointer.c \
-		srcs/ft_printf/ft_print_string.c \
-		srcs/ft_printf/ft_printf.c
-GNL = srcs/get_next_line/get_next_line.c \
-		srcs/get_next_line/get_next_line_utils.c
-LIBFT = srcs/Libft/ft_strlen.c \
-		srcs/Libft/ft_strdup.c srcs/Libft/ft_itoa.c
-SRCS =  main.c parse_map.c render_map.c \
-		window_management.c player.c \
-		render_character.c prepare_screen_size.c \
-		map_render_border.c map_render_misc.c \
-		map_render_walls.c \
-		load_sprites_scoreboard.c \
-		load_sprites_extra.c \
-		load_sprites.c free.c \
-		render_score.c \
-		so_long_utils.c \
-		win_lose.c player_find.c player_directions.c \
-		$(GNL) $(LIBFT) $(PRINTF)
-SRCS_NORM = main.c parse_map.c render_map.c \
-		window_management.c player.c \
-		render_character.c prepare_screen_size.c \
-		map_render_border.c map_render_misc.c \
-		map_render_walls.c \
-		load_sprites_scoreboard.c \
-		load_sprites_extra.c \
-		load_sprites.c free.c \
-		render_score.c \
-		so_long_utils.c \
-		win_lose.c player_find.c player_directions.c
-OBJS = $(SRCS:.c=.o)
+NAME	=	so_long
 
-CC = cc 
-CFLAGS = -Wall -Werror -Wextra -g
-LDFLAGS = -L./srcs/minilibx-linux/ -lmlx -lXext -lX11 -lm
-RM = rm -f
+CC		=	cc
+RM		=	rm -f
+CFLAGS	=	-Wall -Werror -Wextra -Imlx -g 
+MLXFLAGS=	-L ./srcs/mlx -lmlx -lXext -lX11
+LIBS	=	./srcs/Libft/libft.a
+PRINTF  =  ./srcs/ft_printf/libftprintf.a
 
-NAME = game
+SRCS	=	main.c parse_map.c render_map.c \
+			window_management.c player.c \
+			render_character.c prepare_screen_size.c \
+			map_render_border.c map_render_misc.c \
+			map_render_walls.c error.c\
+			load_sprites_scoreboard.c \
+			load_sprites_extra.c check_format.c\
+			load_sprites.c free.c check_map_free.c\
+			render_score.c check_map_size.c\
+			so_long_utils.c flood_fill.c\
+			win_lose.c player_find.c player_directions.c \
 
-all: $(NAME)
+OBJS	=	$(SRCS:.c=.o)
+
+all:		$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+			make -C ./srcs/mlx
+			make -C ./srcs/Libft
+			make -C ./srcs/ft_printf
+			$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLXFLAGS) $(PRINTF) -o $(NAME)
 
 clean:
+			make clean -C ./srcs/mlx
+			make clean -C ./srcs/Libft
+			make clean -C ./srcs/ft_printf
 			$(RM) $(OBJS)
-fclean: clean
+
+fclean:		clean
 			$(RM) $(NAME)
-re: fclean
-			$(NAME)
+
+re:			fclean all
 
 norm:
-	norminette $(SRCS_NORM)
+			norminette $(SRCS) so_long.h
+
+.PHONY: all clean fclean re

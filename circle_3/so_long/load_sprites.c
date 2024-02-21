@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:48:45 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/01/23 15:30:58 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:58:39 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	load_sprites(t_game *game, t_sprites **sprites)
 	load_scoreboard(game, sprites, &i);
 	if (i > 0)
 	{
-		perror("Error loading assets.\n");
+		ft_printf("Error loading assets.\n");
 		exit(0);
 	}
 }

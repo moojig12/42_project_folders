@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 15:38:14 by nmandakh          #+#    #+#              #
-#    Updated: 2024/02/19 20:16:10 by nmandakh         ###   ########.fr        #
+#    Updated: 2023/11/21 18:12:24 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c \
 					
 
 SRCS_B			=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
-					ft_lstlast.c ft_lstadd_back.c ft_lstclear.c ft_lstdelone.c
+					ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+					ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 OBJS			= $(SRCS:.c=.o)
 

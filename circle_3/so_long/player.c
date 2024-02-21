@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:27:45 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/01/23 15:27:15 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:17:39 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	movement(int keycode, t_hook *par)
 // wtf is this?
 void	player(t_game *game, t_sprites **sprites)
 {
-	game->player_coins = 0;
 	if (!game->player_pos)
 		look_for_player(game);
 	render_character(game, sprites);

@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 19:01:35 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/01/23 14:52:33 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:03:30 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	check_validity(t_game *game, int y, int x)
 	{
 		if (game->map.layout[y][x] != '\n')
 		{
-			ft_printf("\ncheck:%c|x:%i|y:%i\n", game->map.layout[y][x], x, y);
-			perror("Incorrect map format!\n");
+			ft_printf("check:%c|x:%i|y:%i\n", game->map.layout[y][x], x, y);
+			ft_printf("Incorrect map format!\n");
 			exit (0);
 		}
 	}

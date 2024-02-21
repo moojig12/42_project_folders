@@ -6,13 +6,13 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:37:29 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/01/23 15:59:39 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:04:36 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_map(t_game *game)
+/* void	print_map(t_game *game)
 {
 	int	i;
 
@@ -23,12 +23,12 @@ void	print_map(t_game *game)
 		i++;
 	}
 	ft_printf("\n");
-}
+} */
+	// print_map(par->game);
 
 void	run_game(t_hook *par, char *file_name)
 {
 	parse_map(par->game, file_name, par);
-	print_map(par->game);
 	measure_game_screen(par->game);
 	init_screen(par->game);
 	load_sprites(par->game, par->sprites);
@@ -38,6 +38,16 @@ void	run_game(t_hook *par, char *file_name)
 	mlx_loop(par->game->mlx);
 }
 
+void	initialize_main(t_hook *par, t_game *game, t_sprites **sprites)
+{
+	par->game = game;
+	par->sprites = sprites;
+	par->game->last_movement = 0;
+	par->game->movement = 0;
+	par->game->player_pos = NULL;
+	par->game->player_coins = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_sprites	**sprites;
@@ -45,12 +55,13 @@ int	main(int argc, char **argv)
 	t_hook		*par;
 	int			i;
 
-	i = 0;
 	if (argc != 2)
 	{
-		perror("Error, Invalid number of arguments! :(\n");
+		ft_printf("Error, Invalid number of arguments! :(\n");
 		return (1);
 	}
+	check_format(argv[1]);
+	i = 0;
 	par = (t_hook *)malloc(sizeof(t_hook));
 	game = malloc(sizeof(t_game));
 	sprites = malloc(41 * sizeof(t_sprites *));
@@ -59,12 +70,7 @@ int	main(int argc, char **argv)
 		sprites[i] = malloc(sizeof(t_sprites));
 		i++;
 	}
-	par->game = game;
-	par->sprites = sprites;
-	game->last_movement = 0;
-	game->movement = 0;
-	game->player_pos = NULL;
-	game->player_coins = 0;
+	initialize_main(par, game, sprites);
 	run_game(par, argv[1]);
 	return (0);
 }
