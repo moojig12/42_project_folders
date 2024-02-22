@@ -37,6 +37,7 @@ void	check_character(char **argv)
 		i++;
 	}
 }
+
 // argument_check returns 1 for single continous string otherwise 0.
 // exits program with error messages in case of invalid prompt
 

@@ -18,7 +18,7 @@
 # include <stdio.h>
 
 typedef struct s_stack {
-	int		value;
+	int		content;
 	int		group;
 	struct s_stack	*next;
 	struct s_stack	*prev;

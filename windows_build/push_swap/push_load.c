@@ -1,6 +1,10 @@
 
 #include "push_swap.h"
 
+void	add_node(t_stack **A, int content)
+{
+
+}
 
 static void	check_double(t_stack *A)
 {
@@ -13,7 +17,7 @@ static void	check_double(t_stack *A)
 	{
 		while (fast_temp)
 		{
-			if (fast_temp->value == temp->value)
+			if (fast_temp->content == temp->content)
 				error("List has doubles!");
 			fast_temp = fast_temp->next;
 		}
@@ -34,20 +38,34 @@ static void	load_all(t_stack **A, char **argv)
 	}
 }
 
+static void	skip_delimiter(char *string, int *i)
+{
+	while (string[(*i)] == ' ')
+	{
+		(*i)++;
+	}
+}
+
 static void load_array(t_stack **A, char *string)
 {
+	int	num;
 	int	i;
 	int	size;
 
 	i = 0;
 	size = 0;
+	skip_delimiter(string, &i);
 	while (string[i])
 	{
 		while (string[i] > '0' && string[i] < '9')
 		{
-			size++;
+			num += ft_atoi(string[i]);
 			i++;
+			if (string[i] > '0' && string[i] < '9')
+				num *= 10;
 		}
+		add_node(A, num);
+		skip_delimiter(string, &i);
 	}
 }
 
