@@ -11,3 +11,22 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void	rotate_a(t_stack **A)
+{
+	rotate(A);
+	printf("ra\n");
+}
+
+void	rotate_b(t_stack **B)
+{
+	rotate(B);
+	printf("rb\n");
+}
+
+void	rotate_r(t_stack **A, t_stack **B)
+{
+	rotate(A);
+	rotate(B);
+	printf("rr\n");
+}

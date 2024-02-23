@@ -24,11 +24,22 @@ typedef struct s_stack {
 	struct s_stack	*prev;
 }	t_stack;
 
+// utilities
+void	error(char *s);
+void	print_list(t_stack *stack);
+void	print_both(t_stack *A, t_stack *B);
+
+//	list functions
+void	insert_node(t_stack **stack, t_stack *node);
+t_stack	*new_node(int content);
+
 //	load input into stack A
 void	load_list(char **argv, int mode, t_stack **A);
 
 //	push operations
 int		push(t_stack **A, t_stack **B);
+void	push_a(t_stack **A, t_stack **B);
+void	push_b(t_stack **A, t_stack **B);
 
 //	swap operations
 int		swap(t_stack **stack);
@@ -38,5 +49,8 @@ int		rotate(t_stack **stack);
 
 // reverse rotate operations
 int		reverse(t_stack **stack);
+
+// sort
+void	start_sort(t_stack **A, t_stack **B);
 
 #endif

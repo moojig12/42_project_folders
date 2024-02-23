@@ -11,3 +11,22 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void	swap_a(t_stack **A)
+{
+	swap(A);
+	printf("sa\n");
+}
+
+void	swap_b(t_stack **B)
+{
+	swap(B);
+	printf("sb\n");
+}
+
+void	swap_r(t_stack **A, t_stack **B)
+{
+	swap(A);
+	swap(B);
+	printf("ss\n");
+}
