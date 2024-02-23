@@ -19,22 +19,22 @@ int	push(t_stack **dest, t_stack **origin)
 
 	if (!origin || !(*origin))
 		return (1);
-	head_origin = origin;
-	new_head = *origin;
-	if (!dest || !*dest)
-	{
-		(*head_origin) = new_head->next;
-		new_head->next = NULL;
-		*dest = new_head;
-	}
-	else
-	{
-		(*head_origin) = new_head->next;
-		new_head->next = *dest;
-		(*head_origin)->prev = NULL;
-		*dest = new_head;
-		new_head->next->prev = new_head;
-	}
+	// head_origin = origin;
+	// new_head = *origin;
+	// if (!dest || !*dest)
+	// {
+	// 	(*head_origin) = new_head->next;
+	// 	new_head->next = NULL;
+	// 	*dest = new_head;
+	// }
+	// else
+	// {
+	// 	(*head_origin) = new_head->next;
+	// 	new_head->next = *dest;
+	// 	(*head_origin)->prev = NULL;
+	// 	*dest = new_head;
+	// 	new_head->next->prev = new_head;
+	// }
 	return (0);
 }
 
