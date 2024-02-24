@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:42:32 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/21 15:49:53 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:04:02 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	bubble_sort(t_stack **A, t_stack **B)
 	// temp_b = *B;
 	size = ft_lstsize((t_list *)*A);
 	median = get_median(*A);
-	ft_printf("median: %i\nsize: %i\n", median, size);
+	// ft_printf("median: %i\nsize: %i\n", median, size);
 	while (ft_lstsize((t_list *)*A) > 1)
 	{
 		low = get_low(*A);
@@ -188,8 +188,8 @@ void	bubble_sort(t_stack **A, t_stack **B)
 			rotate_a(A);
 		i++;
 	}
-	ft_printf("moves: %i\n", i);
-	print_both(*A, *B);
+	// ft_printf("moves: %i\n", i);
+	// print_both(*A, *B);
 	// big_sort(A, B);
 	return ;
 }
@@ -199,7 +199,7 @@ void	bubble_sort(t_stack **A, t_stack **B)
 	return ;
 } */
 
-void	nanni_sort(t_stack **A, t_stack **B)
+/* void	nanni_sort(t_stack **A, t_stack **B)
 {
 	t_stack	*ptr;
 	int	median;
@@ -228,4 +228,4 @@ void	nanni_sort(t_stack **A, t_stack **B)
 	ft_printf("pushed: %i\n", i);
 	sort_sides(A, B);
 	print_both(*A, *B);
-}
+} */

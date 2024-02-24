@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:31:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/21 15:50:28 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:03:39 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ int	main(int argc, char **argv)
 		load_array(&A, argv);
 	else
 		load_list(&A, argc, argv);
-	print_list(A);
+	// print_list(A);
 	if (check_sort(A) == 0)
 	{
 		if (ft_lstsize((t_list *)A) <= 3)
 		{
-			ft_printf("clause 1\n");
+			// ft_printf("clause 1\n");
 			short_sort(&A, &B);
 		}
 		else
 		{
-			ft_printf("clause 2\n");
-			big_sort(&A, &B);
+			// ft_printf("clause 2\n");
+			bubble_sort(&A, &B);
 		}
 	}
 	return (0);
