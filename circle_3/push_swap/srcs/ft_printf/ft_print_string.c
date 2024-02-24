@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/12/06 15:26:45 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/12/06 16:40:47 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "ft_printf.h"
 
-void	reverse_a(t_stack **A)
+int	ft_print_string(char *s)
 {
-	reverse(A);
-	ft_printf("rra\n");
-}
+	int	i;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	ft_printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	ft_printf("rrr\n");
+	i = 0;
+	if (!s)
+		return (ft_print_string("(null)"));
+	while (s[i])
+	{
+		ft_print_char(s[i]);
+		i++;
+	}
+	return (i);
 }

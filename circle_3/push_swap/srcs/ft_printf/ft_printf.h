@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/12/06 12:45:50 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/23 14:28:39 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	reverse_a(t_stack **A)
-{
-	reverse(A);
-	ft_printf("rra\n");
-}
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdint.h>
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	ft_printf("rrb\n");
-}
+int	ft_print_char(char c);
+int	ft_print_string(char *s);
+int	ft_print_digit(long n, int base, int booly);
+int	ft_print_pointer(void *p);
+int	ft_printf(const char *s1, ...);
 
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	ft_printf("rrr\n");
-}
+#endif
