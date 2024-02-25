@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/21 16:28:11 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/21 17:37:52 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+t_list	*ft_lstlast(t_list *lst)
 {
-	reverse(A);
-	printf("rra\n");
-}
+	int	i;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	i = 0;
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
 }

@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/21 17:19:47 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/22 12:33:05 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	reverse(A);
-	printf("rra\n");
-}
+	t_list	*el;
+	t_list	*elem;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	if (lst != 0 && lst[0] != 0)
+	{
+		el = lst[0];
+		while (el->next != NULL)
+		{
+			del(el->content);
+			elem = el;
+			el = el->next;
+			free(elem);
+		}
+		del(el->content);
+		free(el);
+		lst[0] = NULL;
+	}
 }

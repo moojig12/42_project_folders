@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 	// printf("list size: %i\n", list_size(A));
 	// print_both(A, B);
 	start_sort(&A, &B);
-	print_both(A, B);
+	// print_both(A, B);
 	ft_free(&A);
 	ft_free(&B);
 }

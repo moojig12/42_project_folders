@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/13 13:23:27 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/17 13:34:52 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+void	ft_bzero(void *s, size_t n)
 {
-	reverse(A);
-	printf("rra\n");
-}
+	size_t			i;
+	unsigned char	*p;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	p = (unsigned char *)s;
+	i = 0;
+	while (n > i)
+	{
+		*p = 0;
+		p++;
+		i++;
+	}
+	return ;
 }

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/13 13:27:48 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/17 13:38:20 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	reverse(A);
-	printf("rra\n");
-}
+	char		*d;
+	const char	*s;
+	size_t		i;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	if (dest == NULL && src == NULL)
+		return (dest);
+	i = 0;
+	d = dest;
+	s = src;
+	while (i < n)
+	{
+		*d++ = *s++;
+		n--;
+	}
+	return (dest);
 }

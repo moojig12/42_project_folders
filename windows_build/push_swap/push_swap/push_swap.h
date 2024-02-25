@@ -14,16 +14,12 @@
 # define PUSH_SWAP_H
 
 # include "srcs/Libft/libft.h"
-// # include "srcs/ft_printf/ft_printf.h"
+# include "srcs/ft_printf/ft_printf.h"
 # include <stdlib.h>
-# include <stdbool.h>
 
 typedef struct s_stack {
 	int		content;
-	int		cost;
-	bool	above_median;
-	bool	cheapest;
-	struct s_stack	*target_node;
+	// int		sorted;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;

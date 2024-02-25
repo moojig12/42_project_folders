@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/20 15:54:28 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/20 16:43:31 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	reverse(A);
-	printf("rra\n");
-}
+	unsigned int	len;
+	unsigned int	i;
+	char			*dest;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	i = 0;
+	len = ft_strlen(s);
+	dest = (char *)malloc(len + 1);
+	if (dest == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		dest[i] = f(i, s[i]);
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

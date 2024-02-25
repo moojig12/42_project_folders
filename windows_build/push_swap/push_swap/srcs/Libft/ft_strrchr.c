@@ -1,32 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/14 15:20:01 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/17 13:44:05 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+char	*ft_strrchr(const char *s, int c)
 {
-	reverse(A);
-	printf("rra\n");
-}
+	int	i;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	while (i != -1)
+	{
+		if (s[i] == (char)c)
+		{
+			while (i != 0)
+			{
+				i--;
+				s++;
+			}
+			return ((char *)s);
+		}
+		i--;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	else
+		return (NULL);
 }
-
-void	reverse_r(t_stack **A, t_stack **B)
+/* 
+int	main()
 {
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
-}
+	const char *s = "omewo";
+	char *r = ft_strrchr(s, 111);
+	r++;
+} */

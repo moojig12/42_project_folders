@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:20:31 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/24 16:40:54 by nmandakh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 void	error(char *s)
 {
 	// if (s)
-	// 	printf("Error\n");
-	printf("%s\n", s);
+	// 	ft_printf("Error\n");
+	ft_printf("%s\n", s);
 	exit (1);
 }
 
@@ -106,10 +94,10 @@ int	main(int argc, char **argv)
 	A = NULL;
 	B = NULL;
 	load_list(argv, argument_check(argc, argv), &A);
-	// printf("list size: %i\n", list_size(A));
+	// ft_printf("list size: %i\n", list_size(A));
 	// print_both(A, B);
 	start_sort(&A, &B);
-	print_both(A, B);
+	// print_both(A, B);
 	ft_free(&A);
 	ft_free(&B);
 }

@@ -6,15 +6,56 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:37:39 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/24 16:40:05 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:26:36 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	push(t_stack **dest, t_stack **origin)
+{
+	if (!origin || !*origin) // Check if origin stack is empty
+		return;
+		
+	t_stack *node = *origin; // Extract the first node from origin stack
+	*origin = (*origin)->next; // Update origin stack head
+
+	if (*origin) // If origin stack is not empty after removal
+		(*origin)->prev = NULL; // Update prev pointer of the new head to NULL
+
+	// Connect the node to the destination stack
+	node->prev = NULL; // Set prev pointer of node to NULL
+	node->next = *dest; // Set next pointer of node to current head of destination stack
+
+	if (*dest) // If destination stack is not empty
+		(*dest)->prev = node; // Update prev pointer of current head of destination stack
+
+	*dest = node; // Update destination stack head
+	// t_stack	*node;
+
+	// if (!origin || !*origin)
+	// 	return ;
+	// node = *origin;
+	// *origin = (*origin)->next;
+	// if (*origin)
+	// 	(*origin)->prev = NULL;
+	// node->prev = NULL;
+	// if (!*dest)
+	// {
+	// 	*dest = node;
+	// 	node->next = NULL;
+	// }
+	// else
+	// {
+	// 	node->next = *dest;
+	// 	node->next->prev = node;
+	// 	*dest = node;
+	// }
+}
+
 void	swap(t_stack **stack)
 {
-	if (*stack == NULL)
+	if (!*stack)
 		return ;
 	*stack = (*stack)->next;
 	(*stack)->prev->prev = *stack;
@@ -23,117 +64,51 @@ void	swap(t_stack **stack)
 		(*stack)->next->prev = (*stack)->prev;
 	(*stack)->next = (*stack)->prev;
 	(*stack)->prev = NULL;
-}
-
-void	push(t_stack **stack, t_stack **node)
-{
-	t_stack	*push_node;
-
-	if (node == NULL)
-		return ;
-	push_node = *node;
-	*node = (*node)->next;
-	if (*node)
-		(*node)->prev = NULL;
-	push_node->prev = NULL;
-	if (*stack == NULL)
-	{
-		*stack = push_node;
-		push_node->next = NULL;
-	}
-	else
-	{
-		push_node->next = *stack;
-		push_node->next->prev = push_node;
-		*stack = push_node;
-	}
+	return ;
 }
 
 void	reverse(t_stack **stack)
 {
-	t_stack	*tail;
-	t_stack	*head;
-	t_stack	*onebeforetail;
-
-	head = *stack;
-	tail = list_last(*stack);
-	onebeforetail = tail->prev;
-	ft_lstadd_front_ps(stack, tail);
-	(*stack)->next = head;
-	onebeforetail->next = NULL;
-}
-
-void	rotate(t_stack **stack)
-{
 	t_stack	*head;
 	t_stack	*second;
-	t_stack	*tail;
+	t_stack	*last;
 
 	head = *stack;
 	second = (*stack)->next;
-	tail = list_last(*stack);
-	ft_lstadd_back_ps(&second, head);
-	if (second && second->next)
+	last = list_last(*stack);
+	if (!second)
+		return ;
+	if (last == head)
 	{
-		second->prev = NULL;
-		head->prev = tail;
+		*stack = head;
+		head->prev = NULL;
+	}
+	else
+	{
+		last->next = head;
+		head->prev = last;
 		head->next = NULL;
 		*stack = second;
 	}
 }
 
-void	ft_lstadd_front_ps(t_stack **lst, t_stack *new)
+void	rotate(t_stack **stack)
 {
 	t_stack	*head;
-
-	head = *lst;
-	if (lst)
-	{
-		if (head)
-		{
-			new->next = head;
-			head->prev = new;
-		}
-		new->prev = NULL;
-		*lst = new;
-	}
-	new->next = lst[0];
-	*lst = new;
-}
-
-t_stack	*ft_lstlast_ps(t_stack *lst)
-{
-	t_stack	*temp;
-
-	if (!lst)
-		return (NULL);
-	temp = lst;
-	while (temp->next)
-	{
-		temp = temp->next;
-	}
-	return (temp);
-}
-
-void	ft_lstadd_back_ps(t_stack **lst, t_stack *new)
-{
 	t_stack	*last;
+	t_stack	*prev_last;
 
-	last = ft_lstlast_ps(*lst);
-	if (!last)
-	{
-		*lst = new;
-		new->prev = NULL;
-	}
-	else
-	{
-		last->next = new;
-		new->prev = last;
-		new->next = NULL;
-	}
+	head = *stack;
+	if (list_size(*stack) < 2)
+		return ;
+	last = list_last(*stack);
+	prev_last = last->prev;
+	*stack = head->next;
+	head->next = NULL;
+	last->next = head;
+	head->prev = last;
+	return ;
 }
-
-
 
 void	print_list(t_stack *stack)
 {

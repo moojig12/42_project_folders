@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/20 16:26:30 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/21 18:14:58 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	reverse(A);
-	printf("rra\n");
-}
+	char	c;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	if (nb == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+	}
+	else if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-nb, fd);
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		c = nb % 10 + 48;
+		ft_putchar_fd(c, fd);
+	}
+	else
+	{
+		c = nb + 48;
+		ft_putchar_fd(c, fd);
+	}
+	return ;
 }
