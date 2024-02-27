@@ -14,9 +14,13 @@
 
 void	sort_three(t_stack **A)
 {
-	while (check_sort_a(*A) == 0)
-	{
-		print_list(*A);
-		rotate_a(A);
-	}
+	t_stack	*max;
+
+	max = get_high(*A);
+	if (max == *A)
+		ra(A);
+	else if ((*A)->next == biggest_node)
+		rra(A);
+	if ((*A)->content > (*A)->next->content)
+		swap_a(*A);
 }

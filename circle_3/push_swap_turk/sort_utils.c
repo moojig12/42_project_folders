@@ -67,10 +67,10 @@ int	check_sort_a(t_stack *stack)
 	{
 		i = stack->content;
 		if (i > stack->next->content)
-			return (0);
+			return (1);
 		stack = stack->next;
 	}
-	return (1);
+	return (0);
 }
 
 int	check_sort_b(t_stack *stack)
@@ -81,8 +81,8 @@ int	check_sort_b(t_stack *stack)
 	{
 		i = stack->content;
 		if (i < stack->next->content)
-			return (0);
+			return (1);
 		stack = stack->next;
 	}
-	return (1);
+	return (0);
 }

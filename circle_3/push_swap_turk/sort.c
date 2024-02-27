@@ -12,9 +12,18 @@
 
 #include "push_swap.h"
 
-void	find_target(t_stack **A, t_stack **B)
-{
 
+t_stack	*get_cheapest(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
 }
 
 void	start_b_push(t_stack **A, t_stack **B)
@@ -29,8 +38,24 @@ void	start_b_push(t_stack **A, t_stack **B)
 
 void	turk_sort(t_stack **A, t_stack **B)
 {
-	push_b(A, B);
-	push_b(A, B);
-	start_b_push(A, B);
-	start_a_push(A, B);
+	int	size_a;
+
+	size_a = list_size(*A);
+	if (list_size(*A) > 3 && !check_sort_a(*A))
+		push_b(A, B);
+	if (list_size(*A) > 3 && !check_sort_a(*A))
+		push_b(A, B);
+	while (list_size(*A) > 3 && !check_sort_a(*A))
+	{
+		calculate_node(*A, *B);
+		turk_a_to_b(A, B);
+	}
+	sort_three(A);
+	while (*B)
+	{
+		calculate_node(*A, *B);
+		turk_b_to_a(A, B);
+	}
+	current_index(*A);
+	last_sort(A);
 }
