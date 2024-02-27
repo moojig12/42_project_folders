@@ -12,11 +12,16 @@
 
 #include "push_swap.h"
 
+void	find_target(t_stack **A, t_stack **B)
+{
+
+}
+
 void	start_b_push(t_stack **A, t_stack **B)
 {
 	while (list_size(*A) > 3)
 	{
-		find_target(*A, *B);
+		find_target(A, B);
 		calculate_cost(*A, *B);
 		do_op(A, B);
 	}
