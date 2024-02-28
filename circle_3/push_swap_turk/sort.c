@@ -26,7 +26,14 @@ t_stack	*get_cheapest(t_stack *stack)
 	return (NULL);
 }
 
-void	calculate_node_b()
+void	calculate_node_b(t_stack *A, t_stack *B)
+{
+	current_index(A);
+	current_index(B);
+	find_target_a(A, B);
+	find_cost_a(A, B);
+	set_cheapest(A);
+}
 
 void	turk_sort(t_stack **A, t_stack **B)
 {
