@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:11:05 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/26 13:04:16 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:26:27 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 t_stack	*last_node(t_stack *stack)
 {
-	t_stack	*temp;
-
 	if (!stack)
 		return (NULL);
-	temp = stack;
-	while (temp->next)
-		temp = temp->next;
-	return (temp);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }
 
 void	print_list(t_stack *stack)
@@ -38,7 +35,10 @@ void	print_list(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		ft_printf("position %i: %i\n", i, temp->content);
+		ft_printf("position: %i\n%i\n", i, temp->content);
+		ft_printf("cost: %i\n", temp->cost);
+		ft_printf("target: %i\n", stack->target->content);
+		ft_printf("\n");
 		i++;
 		temp = temp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:50 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/26 08:29:57 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:47:14 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,15 @@ void	push(t_stack **stack, t_stack **node)
 void	reverse(t_stack **stack)
 {
 	t_stack	*last;
+	// t_stack	last_prev;
 
 	if (!*stack || !(*stack)->next)
 		return ;
 	last = last_node(*stack);
 	last->prev->next = NULL;
-	last->next = NULL;
+	last->prev = NULL;
+	last->next = (*stack);
 	*stack = last;
-	last->next->prev = NULL;
 }
 
 void	rotate(t_stack **stack)

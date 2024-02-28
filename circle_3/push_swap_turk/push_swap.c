@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:39 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/26 13:08:48 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:13:10 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,22 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
+void	test_operations(t_stack **A, t_stack **B)
+{
+	push_b(A, B);
+	print_both(*A, *B);
+	push_b(A, B);
+	print_both(*A, *B);
+	push_b(A, B);
+	print_both(*A, *B);
+	swap_s(A, B);
+	print_both(*A, *B);
+	reverse_r(A, B);
+	print_both(*A, *B);
+	rotate_r(A, B);
+	print_both(*A, *B);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*A;
@@ -105,24 +121,18 @@ int	main(int argc, char **argv)
 
 	A = NULL;
 	B = NULL;
-	
 	load_list(argv, argument_check(argc, argv), &A);
-	// ft_printf("list size: %i\n", list_size(A));
-	print_both(A, B);
-	if (check_sort_a(A) == 0)
+	// test_operations(&A, &B);
+	if (!check_sort(A))
 	{
 		if (list_size(A) == 2)
 			swap_a(&A);
 		else if (list_size(A) == 3)
 			sort_three(&A);
 		else
-		{
-			// ft_printf("clause 2\n");
 			turk_sort(&A, &B);
-		}
 	}
-	// start_sort(&A, &B);
-	// print_both(A, B);
+	print_both(A, B);
 	free_stack(&A);
 	free_stack(&B);
 }

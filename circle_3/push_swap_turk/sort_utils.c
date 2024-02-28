@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:15:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/26 13:09:32 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:07:45 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,49 @@ int	list_size(t_stack *stack)
 	return (i);
 }
 
-long	get_high(t_stack *stack)
+t_stack	*get_high(t_stack *stack)
 {
-	t_stack	*node;
+	t_stack	*high;
 	long		i;
 
-	node = stack;
-	i = node->content;
-	while (node->next)
+	if (!stack)
+		return (NULL);
+	high = stack;
+	i = LONG_MIN;
+	while (stack)
 	{
-		node = node->next;
-		if (node->content > i)
-			i = node->content;
+		if (stack->content > i)
+		{
+			i = high->content;
+			high = stack;
+		}
+		stack = stack->next;
 	}
-	return (i);
+	return (high);
 }
 
-long	get_low(t_stack *stack)
+t_stack	*get_low(t_stack *stack)
 {
-	t_stack	*node;
+	t_stack	*low;
 	long		i;
 
-	node = stack;
-	i = node->content;
-	while (node->next)
+	if (!stack)
+		return (NULL);
+	low = stack;
+	i = LONG_MAX;
+	while (stack)
 	{
-		node = node->next;
-		if (node->content < i)
-			i = node->content;
+		if (stack->content < i)
+		{
+			i = low->content;
+			low = stack;
+		}
+		stack = stack->next;
 	}
-	return (i);
+	return (low);
 }
 
-int	check_sort_a(t_stack *stack)
+int	check_sort(t_stack *stack)
 {
 	long i;
 
@@ -67,22 +77,18 @@ int	check_sort_a(t_stack *stack)
 	{
 		i = stack->content;
 		if (i > stack->next->content)
-			return (1);
+			return (0);
 		stack = stack->next;
 	}
-	return (0);
+	return (1);
 }
 
-int	check_sort_b(t_stack *stack)
+void	refresh_index(t_stack *A, t_stack *B)
 {
-	long i;
-
-	while (stack->next != NULL)
-	{
-		i = stack->content;
-		if (i < stack->next->content)
-			return (1);
-		stack = stack->next;
-	}
-	return (0);
+	if (!A)
+		return ;
+	index_stack(A);
+	if (!B)
+		return ;
+	index_stack(B);
 }

@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:47 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/26 09:14:03 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:40:54 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,43 @@ int	skip_delimiter(char *string, int i)
 	return (i);
 }
 
+static t_stack	*allocate_node(long content)
+{
+	t_stack	*new;
+
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	new->prev = NULL;
+	new->above_median = INT_MAX;
+	new->cheapest = INT_MAX;
+	new->cost = INT_MAX;
+	new->index = INT_MIN;
+	new->target = NULL;
+	return (new);
+}
+
 void	append_node(t_stack **stack, long content)
 {
-	t_stack	*node;
+	t_stack	*new;
 	t_stack	*last;
 
 	if (!stack)
 		return ;
-	node = (t_stack *)malloc(sizeof(t_stack));
-	if (!node)
-		return ;
-	node->next = NULL;
-	node->content = content;
+	new = allocate_node(content);
 	if (!stack || !*stack)
 	{
-		*stack = node;
-		node->prev = NULL;
+		*stack = new;
+		new->prev = NULL;
 	}
 	else
 	{
 		last = last_node(*stack);
-		last->next = node;
-		node->prev = last;
+		last->next = new;
+		new->prev = last;
+		new->next = NULL;
 	}
 	return ;
 }

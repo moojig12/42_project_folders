@@ -1,5 +1,15 @@
 {
 	"files.associations": {
-		"libft.h": "c"
+		"libft.h": "c",
+		"random": "c",
+		"array": "c",
+		"*.tcc": "c",
+		"bitset": "c",
+		"functional": "c",
+		"mutex": "c",
+		"regex": "c",
+		"tuple": "c",
+		"variant": "c",
+		"chrono": "c"
 	}
 }

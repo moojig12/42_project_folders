@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/23 14:17:12 by nmandakh          #+#    #+#              #
-#    Updated: 2024/02/26 08:46:24 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/02/28 18:38:24 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ FT_PRINTF	=	./lib/ft_printf/libftprintf.a
 STCK_OP		=	./operations/push_op.c ./operations/swap_op.c \
 				./operations/rotate_op.c ./operations/reverse_op.c 
 
-
 OBJS		=	$(SRCS=.c=.o)
 
 # Program name
@@ -33,6 +32,7 @@ all:	$(NAME)
 
 $(NAME) : $(OBJS)
 			make -C ./lib/Libft
+			make bonus -C ./lib/Libft
 			make -C ./lib/ft_printf
 			$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(FT_PRINTF) $(STCK_OP) -o $(NAME)
 
