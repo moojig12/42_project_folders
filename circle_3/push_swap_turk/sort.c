@@ -26,15 +26,7 @@ t_stack	*get_cheapest(t_stack *stack)
 	return (NULL);
 }
 
-void	start_b_push(t_stack **A, t_stack **B)
-{
-	while (list_size(*A) > 3)
-	{
-		find_target(A, B);
-		calculate_cost(*A, *B);
-		do_op(A, B);
-	}
-}
+void	calculate_node_b()
 
 void	turk_sort(t_stack **A, t_stack **B)
 {
@@ -47,14 +39,14 @@ void	turk_sort(t_stack **A, t_stack **B)
 		push_b(A, B);
 	while (list_size(*A) > 3 && !check_sort_a(*A))
 	{
-		calculate_node(*A, *B);
-		turk_a_to_b(A, B);
+		calculate_node_b(*A, *B);
+		turk_b(A, B);
 	}
 	sort_three(A);
 	while (*B)
 	{
-		calculate_node(*A, *B);
-		turk_b_to_a(A, B);
+		calculate_node_a(*A, *B);
+		turk_a(A, B);
 	}
 	current_index(*A);
 	last_sort(A);
