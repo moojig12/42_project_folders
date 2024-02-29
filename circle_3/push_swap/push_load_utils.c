@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:47 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 18:48:19 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:41:23 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ int	skip_delimiter(char *string, int i)
 {
 	while (string[i] < '0' || string[i] > '9')
 	{
-		ft_printf("hekpeawfawe");
 		i++;
 	}
-	ft_printf("here: %c, %i\n", string[i], i);
 	return (i);
 }
 

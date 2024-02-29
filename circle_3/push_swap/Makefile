@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/23 14:17:12 by nmandakh          #+#    #+#              #
-#    Updated: 2024/02/29 18:59:13 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/02/29 19:36:25 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,6 @@ update:		fclean
 			make
 
 norm:
-	norminette $(srcs)
+			norminette $(srcs)
 
 .PHONY = all clean fclean re update
