@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:26:42 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 15:11:06 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:28:10 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	calculate_costs(t_stack *A, t_stack *B)
 		if (i <= median_a)
 			temp->cost = temp->index + temp->target->cost;
 		else
-			temp->cost = (list_size(A) - temp->index) + temp->target->cost;
+			temp->cost = (list_size(A) - temp->index) + (list_size(B) - temp->target->cost);
 		i++;
 		temp = temp->next;
 	}
@@ -191,7 +191,7 @@ void	initiate_push_first(t_stack **A, t_stack **B)
 	t_stack	*cheapest;
 
 	cheapest = set_cheapest(*A);
-	ft_printf("cheapest cost: %i\n", cheapest->cost);
+	// ft_printf("cheapest cost: %i\n", cheapest->cost);
 	// rotate lowest cost to first node
 	if (cheapest->above_median == 1)
 		rotate_both(A, B, cheapest);
