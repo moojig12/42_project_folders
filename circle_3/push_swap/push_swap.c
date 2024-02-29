@@ -5,19 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:20:31 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/24 16:40:54 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/02/26 08:14:39 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/29 18:57:27 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(char *s)
+void	check_array_character(char **argv, int i, int j)
 {
-	// if (s)
-	// 	ft_printf("Error\n");
-	ft_printf("%s\n", s);
-	exit (1);
+	if (argv[i][0] == '"' && argv[i][ft_strlen(argv[i]) - 1] == '"')
+	{
+		i++;
+		while (argv[i - 1])
+		{
+			while (argv[i][j])
+			{
+				if (argv[i][j] < '0' || argv[i][j] > '9')
+					error("Input includes a non-digit value");
+				j++;
+			}
+			j = 0;
+			i++;
+		}
+	}
 }
 
 void	check_character(char **argv, int mode)
@@ -43,26 +54,9 @@ void	check_character(char **argv, int mode)
 	}
 	else if (mode == 1)
 	{
-		if (argv[i][0] == '"' && argv[i][ft_strlen(argv[i]) - 1] == '"')
-		{
-			i++;
-			while (argv[i - 1])
-			{
-				while (argv[i][j])
-				{
-					if (argv[i][j] < '0' || argv[i][j] > '9')
-						error("Input includes a non-digit value");
-					j++;
-				}
-				j = 0;
-				i++;
-			}
-		}
+		check_array_character(argv, i, j);
 	}
 }
-
-// argument_check returns 1 for single continous string otherwise 0.
-// exits program with error messages in case of invalid prompt
 
 int	argument_check(int argc, char **argv)
 {
@@ -83,7 +77,7 @@ int	argument_check(int argc, char **argv)
 	}
 }
 
-void	ft_free(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
 
@@ -100,16 +94,21 @@ void	ft_free(t_stack **stack)
 
 int	main(int argc, char **argv)
 {
-	t_stack	*A;
-	t_stack	*B;
+	t_stack	*a;
+	t_stack	*b;
 
-	A = NULL;
-	B = NULL;
-	load_list(argv, argument_check(argc, argv), &A);
-	// ft_printf("list size: %i\n", list_size(A));
-	// print_both(A, B);
-	start_sort(&A, &B);
-	// print_both(A, B);
-	ft_free(&A);
-	ft_free(&B);
+	a = NULL;
+	b = NULL;
+	load_list(argv, argument_check(argc, argv), &a);
+	if (!check_sort(a))
+	{
+		if (list_size(a) == 2)
+			swap_a(&a);
+		else if (list_size(a) == 3)
+			sort_three(&a);
+		else
+			turk_sort(&a, &b);
+	}
+	free_stack(&a);
+	free_stack(&b);
 }

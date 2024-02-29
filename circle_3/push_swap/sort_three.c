@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:28:11 by nmandakh          #+#    #+#             */
-/*   Updated: 2023/11/21 17:37:52 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/02/26 08:43:47 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/29 18:48:34 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	sort_three(t_stack **A)
 {
-	int	i;
+	t_stack	*max;
 
-	i = 0;
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-	{
-		lst = lst->next;
-	}
-	return (lst);
+	if (list_size(*A) != 3)
+		return ;
+	max = get_high(*A);
+	if (max->content == (*A)->content)
+		rotate_a(A);
+	else if ((*A)->next->content == max->content)
+		reverse_a(A);
+	if ((*A)->content > (*A)->next->content && !check_sort(*A))
+		swap_a(A);
 }

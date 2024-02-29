@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:47 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 18:40:54 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:48:19 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	check_double(t_stack *A)
 		{
 			if (fast_temp->content == temp->content)
 			{
-				// ft_printf("fast:%i | temp:%i\n", fast_temp->content, temp->content);
 				error("List has doubles!");
 			}
 			fast_temp = fast_temp->next;
