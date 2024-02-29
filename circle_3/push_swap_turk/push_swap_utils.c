@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:11:05 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 20:26:27 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:31:31 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ void	print_list(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		ft_printf("position: %i\n%i\n", i, temp->content);
+		ft_printf("index: %i | value: \033[0;36m%i\033[0m\n", temp->index, temp->content);
+		
 		ft_printf("cost: %i\n", temp->cost);
-		ft_printf("target: %i\n", stack->target->content);
+		
+		ft_printf("\033[0;32mpointer address: %p\033[0m\n", temp);
+		ft_printf("\033[0;35mtarget: %p\033[0m\n", temp->target);
+		if (temp->target != NULL)
+			ft_printf("\033[0;35mtarget value: %i\033[0m\n", temp->target->content);
 		ft_printf("\n");
 		i++;
 		temp = temp->next;
@@ -46,8 +51,8 @@ void	print_list(t_stack *stack)
 
 void	print_both(t_stack *A, t_stack *B)
 {
-	ft_printf("Stack A\n");
+	ft_printf("\033[0;31mStack A\033[0m\n");
 	print_list(A);
-	ft_printf("Stack B\n");
+	ft_printf("\033[0;34mStack B\033[0m\n");
 	print_list(B);
 }

@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:39 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 20:13:10 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:41:19 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	main(int argc, char **argv)
 		else
 			turk_sort(&A, &B);
 	}
-	print_both(A, B);
+	// print_both(A, B);
 	free_stack(&A);
 	free_stack(&B);
 }
