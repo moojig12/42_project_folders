@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:35 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 14:55:34 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:53:23 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	reverse_r(t_stack **A, t_stack **B);
 void	sort_three(t_stack **A);
 
 //	turk utils
-void	index_stack(t_stack *stack);
 void	refresh_index(t_stack *A, t_stack *B);
 t_stack	*get_cheapest(t_stack *stack);
 t_stack	*set_cheapest(t_stack *stack);
+void	index_stack(t_stack *stack);
 
 //	turk sort
 void	turk_sort(t_stack **A, t_stack **B);
@@ -99,8 +99,8 @@ void	find_target_b(t_stack *A, t_stack *B);
 void	calculate_costs(t_stack *A, t_stack *B);
 void	move_b_to_a(t_stack **A, t_stack **B);
 void	move_a_to_b(t_stack **A, t_stack **B);
-void	current_index(t_stack *stack);
 void	sort_min(t_stack **A);
+// void	current_index(t_stack *stack);
 // void	last_sort(t_stack **A);
 // void	prep_push(t_stack **stack, t_stack *node, char stack_name);
 // void	init_b_to_a(t_stack *A, t_stack *B);

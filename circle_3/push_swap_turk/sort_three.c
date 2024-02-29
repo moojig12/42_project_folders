@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:43:47 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 20:12:53 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:18:17 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	sort_three(t_stack **A)
 	if (list_size(*A) != 3)
 		return ;
 	max = get_high(*A);
-	if (max == (*A))
+	ft_printf("max: %i\n", max->content);
+	if (max->content == (*A)->content)
 		rotate_a(A);
-	else if ((*A)->next == max)
+	else if ((*A)->next->content == max->content)
 		reverse_a(A);
-	if ((*A) > (*A)->next && !check_sort(*A))
+	if ((*A)->content > (*A)->next->content && !check_sort(*A))
 		swap_a(A);
 }

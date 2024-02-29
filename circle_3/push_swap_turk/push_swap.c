@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:39 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 14:41:19 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:43:14 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,17 @@ void	free_stack(t_stack **stack)
 void	test_operations(t_stack **A, t_stack **B)
 {
 	push_b(A, B);
-	print_both(*A, *B);
+	// print_both(*A, *B);
 	push_b(A, B);
-	print_both(*A, *B);
+	// print_both(*A, *B);
 	push_b(A, B);
-	print_both(*A, *B);
+	// print_both(*A, *B);
 	swap_s(A, B);
-	print_both(*A, *B);
+	// print_both(*A, *B);
 	reverse_r(A, B);
-	print_both(*A, *B);
+	// print_both(*A, *B);
 	rotate_r(A, B);
-	print_both(*A, *B);
+	// print_both(*A, *B);
 }
 
 int	main(int argc, char **argv)

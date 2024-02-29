@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:15:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 14:55:49 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:40:27 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,27 @@ int	check_sort(t_stack *stack)
 	return (1);
 }
 
+void	index_stack(t_stack *stack)
+{
+	int	i;
+	int	median;
+
+	if (!stack)
+		return ;
+	i = 0;
+	median = list_size(stack) / 2;
+	while (stack)
+	{
+		if (i <= median)
+			stack->above_median = 1;
+		else
+			stack->above_median = 0;
+		stack->index = i;
+		i++;
+		stack = stack->next;
+	}
+}
+
 void	refresh_index(t_stack *A, t_stack *B)
 {
 	if (!A)
@@ -106,7 +127,7 @@ t_stack	*get_cheapest(t_stack *stack)
 	return (NULL);
 }
 
-t_stack	*set_cheapest(t_stack *stack)
+t_stack	*set_cheapest(t_stack *stack, t_stack *stack_b)
 {
 	long	cheapest_value;
 	t_stack	*cheapest_node;
@@ -116,11 +137,7 @@ t_stack	*set_cheapest(t_stack *stack)
 	cheapest_value = LONG_MAX;
 	while (stack)
 	{
-		if (stack->cost < cheapest_value)
-		{
-			cheapest_value = stack->cost;
-			cheapest_node = stack;
-		}
+		
 		stack = stack->next;
 	}
 	cheapest_node->cheapest = 1;
