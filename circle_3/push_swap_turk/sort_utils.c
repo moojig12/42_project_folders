@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:15:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 16:40:27 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:41:43 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,19 +127,22 @@ t_stack	*get_cheapest(t_stack *stack)
 	return (NULL);
 }
 
-t_stack	*set_cheapest(t_stack *stack, t_stack *stack_b)
+void	set_cheapest(t_stack *stack)
 {
 	long	cheapest_value;
 	t_stack	*cheapest_node;
 	
 	if (!stack)
-		return (NULL);
+		return ;
 	cheapest_value = LONG_MAX;
 	while (stack)
 	{
-		
+		if (stack->cost < cheapest_value)
+		{
+			cheapest_value = stack->cost;
+			cheapest_node = stack;
+		}
 		stack = stack->next;
 	}
 	cheapest_node->cheapest = 1;
-	return (cheapest_node);
 }
