@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 17:20:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:57:08 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:22:31 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	main(int argc, char **argv)
 {
-	sig_atomic_t
+	return (0);
 }

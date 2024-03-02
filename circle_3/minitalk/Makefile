@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 18:00:10 by nmandakh          #+#    #+#              #
-#    Updated: 2024/03/02 18:02:28 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/03/02 18:45:25 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,40 @@ S_SRCS	=	server.c
 LIBFT		=	./lib/Libft/libft.a
 FT_PRINTF	=	./lib/ft_printf/libftprintf.a
 
+OBJS_C	=	$(C_SRCS:.c=.o)
+OBJS_C	=	$(S_SRCS:.c=.o)
+
 # Program names
 CLIENT	=	client
 SERVER	=	server
 
+all : $(CLIENT) $(SERVER)
+
 # Compilation
+$(CLIENT) : $(OBJS_C)
+			make -C ./lib/Libft
+			make -C ./lib/ft_printf
+			$(CC) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
+			
+$(SERVER) : $(OBJS_S)
+			$(CC) $(LIBFT) $(FT_PRINTF) -o $(SERVER)
+
+clean:
+			make clean -C ./lib/Libft
+			make clean -C ./lib/ft_printf
+			rm -rf $(OBJS)
+			
+fclean:		clean
+			make fclean -C ./lib/Libft
+			make fclean -C ./lib/ft_printf
+			rm -rf $(NAME)
+
+re:			fclean all
+
+update:		fclean
+			make
+
+norm:
+			norminette $(srcs)
+
+.PHONY = all clean fclean re update

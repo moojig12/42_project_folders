@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   mini_talk.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 17:21:35 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:48:05 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:34:58 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "signal.h"
 # include "unistd.h"
+# include "stdlib.h"
 # include "lib/Libft/libft.h"
 # include "lib/ft_printf/ft_printf.h"
 
