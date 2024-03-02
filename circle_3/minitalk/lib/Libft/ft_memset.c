@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:57:08 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/13 12:38:20 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/16 15:58:33 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	sig_atomic_t
+	size_t			i;
+	unsigned char	*p;
+
+	p = (unsigned char *)s;
+	i = 0;
+	while (n > i)
+	{
+		*p = c;
+		p++;
+		i++;
+	}
+	return (s);
 }

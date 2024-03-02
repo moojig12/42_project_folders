@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:57:08 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/13 12:29:42 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/15 18:19:40 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isalnum(int c)
 {
-	sig_atomic_t
+	if ((c >= 65 && c <= 90) \
+	|| (c >= 97 && c <= 122))
+		return (1);
+	else if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }

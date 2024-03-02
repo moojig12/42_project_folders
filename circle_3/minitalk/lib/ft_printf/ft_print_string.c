@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:57:08 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/12/06 15:26:45 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/12/06 16:40:47 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_print_string(char *s)
 {
-	sig_atomic_t
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (ft_print_string("(null)"));
+	while (s[i])
+	{
+		ft_print_char(s[i]);
+		i++;
+	}
+	return (i);
 }

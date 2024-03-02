@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:57:08 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/03/02 17:21:35 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/03/02 17:48:05 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#ifndef MINI_TALK_H
+# define MINI_TALK_H
 
-int	main(int argc, char **argv)
-{
-	sig_atomic_t
-}
+# include "signal.h"
+# include "unistd.h"
+# include "lib/Libft/libft.h"
+# include "lib/ft_printf/ft_printf.h"
+
+#endif

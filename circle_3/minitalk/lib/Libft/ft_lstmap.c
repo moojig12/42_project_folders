@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:14 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 18:00:03 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/21 17:42:51 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/22 13:30:05 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#include "libft.h"
 
-void	sig_handler(int signum)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	ft_printf("Terminating Program!\n");
-	exit (0);
-}
+	t_list	*new;
+	t_list	*temp;
+	void	*p1;
 
-
-
-int	main(int argc, char **argv)
-{
-	signal(SIGINT, sig_handler);
-	signal(SIGTERM, sig_handler);
-	//	Print PID
-	ft_printf("PID: %i\n", getpid);
-
-	//	Create endless loop for receiving signals
-	//		Receive signals
-	//		Decrypt signals
-	//		Take action for Signal
-	while (1)
+	if (!lst || !f)
+		return (NULL);
+	new = NULL;
+	temp = NULL;
+	while (lst)
 	{
-		exit (0);
+		p1 = f(lst->content);
+		temp = ft_lstnew(p1);
+		if (temp == NULL)
+		{
+			ft_lstclear(&new, del);
+			free(p1);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, temp);
+		lst = lst->next;
 	}
+	return (new);
 }

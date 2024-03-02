@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:12 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 17:57:08 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/13 13:27:48 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/17 13:38:20 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	sig_atomic_t
+	char		*d;
+	const char	*s;
+	size_t		i;
+
+	if (dest == NULL && src == NULL)
+		return (dest);
+	i = 0;
+	d = dest;
+	s = src;
+	while (i < n)
+	{
+		*d++ = *s++;
+		n--;
+	}
+	return (dest);
 }

@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 17:20:14 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 18:00:03 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/15 09:55:51 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/16 14:46:14 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_talk.h"
+#include "libft.h"
 
-void	sig_handler(int signum)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_printf("Terminating Program!\n");
-	exit (0);
-}
+	const unsigned char	*string1;
+	const unsigned char	*string2;
+	size_t				i;
 
-
-
-int	main(int argc, char **argv)
-{
-	signal(SIGINT, sig_handler);
-	signal(SIGTERM, sig_handler);
-	//	Print PID
-	ft_printf("PID: %i\n", getpid);
-
-	//	Create endless loop for receiving signals
-	//		Receive signals
-	//		Decrypt signals
-	//		Take action for Signal
-	while (1)
+	string1 = (const unsigned char *)s1;
+	string2 = (const unsigned char *)s2;
+	i = sizeof(unsigned char);
+	if (n == 0)
+		return (0);
+	while (*string1 == *string2 && i < n)
 	{
-		exit (0);
+		string1++;
+		string2++;
+		i += sizeof(unsigned char);
 	}
+	return (*string1 - *string2);
 }
