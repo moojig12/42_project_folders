@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 18:00:10 by nmandakh          #+#    #+#              #
-#    Updated: 2024/03/02 18:45:25 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/03/04 11:40:04 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,20 +33,20 @@ all : $(CLIENT) $(SERVER)
 $(CLIENT) : $(OBJS_C)
 			make -C ./lib/Libft
 			make -C ./lib/ft_printf
-			$(CC) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
-			
+			$(CC) $(C_SRCS) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
+
 $(SERVER) : $(OBJS_S)
-			$(CC) $(LIBFT) $(FT_PRINTF) -o $(SERVER)
+			$(CC) $(S_SRCS) $(LIBFT) $(FT_PRINTF) -o $(SERVER)
 
 clean:
 			make clean -C ./lib/Libft
 			make clean -C ./lib/ft_printf
-			rm -rf $(OBJS)
+			rm -rf $(OBJS_C) $(OBJS_S)
 			
 fclean:		clean
 			make fclean -C ./lib/Libft
 			make fclean -C ./lib/ft_printf
-			rm -rf $(NAME)
+			rm -rf $(CLIENT) $(SERVER)
 
 re:			fclean all
 

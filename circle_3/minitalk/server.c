@@ -6,27 +6,29 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 17:20:14 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/03/02 18:48:46 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:34:40 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_talk.h"
 
-void	*sig_handler(int signum)
+void	sig_handler(int signum)
 {
-	static unsigned char	letter;
-	static int	i;
+	static unsigned char	letter = 0;
+	static int	i = 0;
 
-	i = 0;
-	if (signal == SIGUSR1)
+	if (signum == SIGUSR1)
 		letter |= (0 << i);
 	else
 		letter |= (1 << i);
+	i++;
 	if (i == 8)
 	{
-		i = 0;
+		if (letter == 0)
+			ft_putchar_fd('\n', 1);
 		ft_putchar_fd(letter, 1);
-		letter = 0;
+		letter = 0;	
+		i = 0;
 	}
 }
 
@@ -37,11 +39,7 @@ int	main(void)
 	pid = getpid();
 	//	Print PID
 	ft_printf("PID: [%i]\n", pid);
-
-	//	Create endless loop for receiving signals
-	//		Receive signals
-	//		Decrypt signals
-	//		Take action for Signal
+	//	receive signals
 	while (1)
 	{
 		signal(SIGUSR1, sig_handler);
