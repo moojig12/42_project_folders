@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:15:09 by nmandakh          #+#    #+#             */
-/*   Updated: 2023/11/22 12:43:05 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:14:12 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_list {
 	struct s_list	*next;
 }	t_list;
 
-int		ft_atoi(const char *input);
+long	ft_atol(const char *input);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

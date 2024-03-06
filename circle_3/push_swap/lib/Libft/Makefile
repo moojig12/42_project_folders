@@ -6,7 +6,7 @@
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 15:38:14 by nmandakh          #+#    #+#              #
-#    Updated: 2023/11/21 18:12:24 by nmandakh         ###   ########.fr        #
+#    Updated: 2024/03/02 17:14:12 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # SRCS			=	./*.c
 
 SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c \
-					ft_strlcat.c ft_strncmp.c ft_atoi.c ft_isalpha.c \
+					ft_strlcat.c ft_strncmp.c ft_atol.c ft_isalpha.c \
 					ft_memcpy.c ft_strchr.c  ft_strlcpy.c \
 					ft_strnstr.c ft_tolower.c ft_bzero.c   ft_isascii.c \
 					ft_memmove.c ft_strdup.c  ft_strlen.c  ft_strrchr.c \

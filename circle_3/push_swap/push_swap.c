@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:39 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 18:57:27 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:25:14 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,20 @@ void	check_array_character(char **argv, int i, int j)
 		{
 			while (argv[i][j])
 			{
-				if (argv[i][j] < '0' || argv[i][j] > '9')
+				if ((argv[i][j] < '0' || argv[i][j] > '9') && \
+				(argv[i][j] != '-' && argv[i][j] != '+'))
 					error("Input includes a non-digit value");
 				j++;
 			}
 			j = 0;
 			i++;
 		}
+	}
+	else
+	{
+		if ((argv[i][j] < '0' || argv[i][j] > '9') && \
+				(argv[i][j] != '-' && argv[i][j] != '+'))
+			error("damn");
 	}
 }
 
@@ -44,7 +51,8 @@ void	check_character(char **argv, int mode)
 		{
 			while (argv[i][j])
 			{
-				if (argv[i][j] < '0' || argv[i][j] > '9')
+				if ((argv[i][j] < '0' || argv[i][j] > '9') && \
+				(argv[i][j] != '-' && argv[i][j] != '+'))
 					error("Input includes a non-digit value");
 				j++;
 			}
@@ -62,7 +70,6 @@ int	argument_check(int argc, char **argv)
 {
 	if (argc < 2)
 	{
-		error("Please provide a list of integers.");
 		return (-1);
 	}
 	else if (argc == 2)
@@ -100,7 +107,9 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	load_list(argv, argument_check(argc, argv), &a);
-	if (!check_sort(a))
+	if (!a)
+		return (0);
+	if (check_sort(a) == 0)
 	{
 		if (list_size(a) == 2)
 			swap_a(&a);

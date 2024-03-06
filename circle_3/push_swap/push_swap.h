@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:35 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/29 19:00:03 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/02 16:16:08 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	error(char *s);
 void	print_list(t_stack *stack);
 void	print_both(t_stack *A, t_stack *B);
 t_stack	*last_node(t_stack *stack);
+void	free_stack(t_stack **stack);
 
 // list utilities
 t_stack	*ps_lstnew(int content);
