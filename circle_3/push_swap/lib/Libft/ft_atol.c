@@ -6,17 +6,17 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:15 by nmandakh          #+#    #+#             */
-/*   Updated: 2023/11/16 15:52:16 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:14:12 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *input)
+long	ft_atol(const char *input)
 {
-	int	i;
-	int	positive;
-	int	integer;
+	int		i;
+	int		positive;
+	long	integer;
 
 	i = 0;
 	integer = 0;
@@ -42,5 +42,5 @@ int	ft_atoi(const char *input)
 /* 
 int	main()
 {
-	printf("%i", ft_atoi("2023096690"));
+	printf("%i", ft_atol("2023096690"));
 } */

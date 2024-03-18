@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/23 14:17:12 by nmandakh          #+#    #+#              #
-#    Updated: 2024/02/28 18:38:24 by nmandakh         ###   ########.fr        #
+#    Created: 2024/03/02 18:00:10 by nmandakh          #+#    #+#              #
+#    Updated: 2024/03/04 11:40:04 by nmandakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,40 +15,45 @@ CC		=	cc
 CFLAGS	=	-Wall -Werror -Wextra -g
 
 # Targets
-SRCS		=	push_swap.c push_swap_utils.c push_load.c \
-				sort.c sort_utils.c operations.c push_load_utils.c \
-				sort_three.c
+C_SRCS	=	client.c
+S_SRCS	=	server.c
 LIBFT		=	./lib/Libft/libft.a
 FT_PRINTF	=	./lib/ft_printf/libftprintf.a
-STCK_OP		=	./operations/push_op.c ./operations/swap_op.c \
-				./operations/rotate_op.c ./operations/reverse_op.c 
 
-OBJS		=	$(SRCS=.c=.o)
+OBJS_C	=	$(C_SRCS:.c=.o)
+OBJS_C	=	$(S_SRCS:.c=.o)
 
-# Program name
-NAME	=	push_swap
+# Program names
+CLIENT	=	client
+SERVER	=	server
 
-all:	$(NAME)
+all : $(CLIENT) $(SERVER)
 
-$(NAME) : $(OBJS)
+# Compilation
+$(CLIENT) : $(OBJS_C)
 			make -C ./lib/Libft
-			make bonus -C ./lib/Libft
 			make -C ./lib/ft_printf
-			$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(FT_PRINTF) $(STCK_OP) -o $(NAME)
+			$(CC) $(C_SRCS) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
+
+$(SERVER) : $(OBJS_S)
+			$(CC) $(S_SRCS) $(LIBFT) $(FT_PRINTF) -o $(SERVER)
 
 clean:
 			make clean -C ./lib/Libft
 			make clean -C ./lib/ft_printf
-			rm -rf $(OBJS)
+			rm -rf $(OBJS_C) $(OBJS_S)
 			
 fclean:		clean
 			make fclean -C ./lib/Libft
 			make fclean -C ./lib/ft_printf
-			rm -rf $(NAME)
+			rm -rf $(CLIENT) $(SERVER)
 
 re:			fclean all
 
 update:		fclean
 			make
+
+norm:
+			norminette $(srcs)
 
 .PHONY = all clean fclean re update

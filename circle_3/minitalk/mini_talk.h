@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_op.c                                          :+:      :+:    :+:   */
+/*   mini_talk.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 08:14:57 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 17:30:36 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/03/02 17:21:35 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/03/04 11:43:41 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#ifndef MINI_TALK_H
+# define MINI_TALK_H
 
-void	swap_a(t_stack **A)
-{
-	swap(A);
-	ft_printf("sa\n");
-}
+# include <signal.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include "lib/Libft/libft.h"
+# include "lib/ft_printf/ft_printf.h"
 
-void	swap_b(t_stack **B)
-{
-	swap(B);
-	ft_printf("sb\n");
-}
-
-void	swap_s(t_stack **A, t_stack **B)
-{
-	swap(A);
-	swap(B);
-	ft_printf("ss\n");
-}
+#endif

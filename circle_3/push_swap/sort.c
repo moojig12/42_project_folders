@@ -5,170 +5,78 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 14:17:36 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/24 16:28:39 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/02/28 18:26:42 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/29 18:49:35 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	sort_b(A, B)
-// {
-// 	// sort B
-// }
-
-int	cycle_a(t_stack **A)
+void	turk_sort(t_stack **A, t_stack **B)
 {
-	swap_a(A);
-	rotate_a(A);
-	return (1);
+	int	size_a;
+
+	size_a = list_size(*A);
+	while (list_size(*A) > 3 && list_size(*B) < 2)
+		push_b(A, B);
+	while (--size_a > 4)
+	{
+		find_target_a(*A, *B);
+		refresh_index(*A, *B);
+		calculate_costs_b(*A, *B);
+		set_cheapest(*A);
+		initiate_push_first(A, B);
+	}
+	sort_three(A);
+	while (list_size(*B) > 0)
+	{
+		find_target_b(*A, *B);
+		initiate_push_second(A, B);
+	}
+	refresh_index(*A, *B);
+	sort_min(A);
 }
 
-int	index_node(t_stack *stack)
+void	sort_min(t_stack **A)
 {
-	t_stack	*node;
-	t_stack	*head;
-	int		i;
-
-	node = stack->next;
-	head = stack;
-	i = 0;
-	// pre-exits
-	if (list_size(stack) == 1)
-		return (0);
-	else if (list_size(stack) == 2)
+	while (*A != get_low(*A))
 	{
-		if (check_sort(stack) == 0)
-			return (1);
-		else if (check_sort(stack) == 1)
-			return (0);
-	}
-	else if (head->content < list_last(stack)->content)
-		return (-1);
-	// indexing
-	while ((head->content < node->content) && node != NULL)
-	{
-		i++;
-		if (node->next != NULL)
-			node = node->next;
-		else
-			break ;
-	}
-	return (i);
-}
-
-int	cycle_b(t_stack **B)
-{
-	if (check_sort(*B) == 1)
-		return (0);
-	swap_b(B);
-	if (check_sort(*B) == 1)
-		return (0);
-	rotate_b(B);
-	if (check_sort(*B) == 1)
-		return (0);
-	return (1);
-}
-
-int	cycle_reverse_b(t_stack **B)
-{
-	reverse_b(B);
-	swap_b(B);
-	return (1);
-}
-
-void	sort_insertion_b(t_stack **B)
-{
-	t_stack	*temp;
-	int		i;
-	int		reverse;
-
-	temp = *B;
-	i = index_node(*B);
-	// print_list(*B);
-	reverse = 0;
-	if (check_sort(*B) == 1)
-		return ;
-	else if (i < 0)
-	{
-		rotate_b(B);
-		return ;
-	}
-	else if (i <= list_size(*B) / 2)
-	{
-		while (i > 0)
-		{
-			reverse += cycle_b(B);
-			if (check_sort(*B) == 1)
-			{
-				i = 0;
-				break ;
-			}
-			i--;
-		}
-	}
-	else if ((i > list_size(*B) / 2) && i != 0)
-	{
-		reverse = -1;
-		i = list_size(*B) - i - 1;
-		while (i > 0)
-		{
-			reverse -= cycle_reverse_b(B);
-			i--;
-		}
-		// print_list(*B);
-	}
-	while (reverse > 0)
-	{
-		reverse--;
-		reverse_b(B);
-	}
-	while (reverse < 0)
-	{
-		reverse++;
-		rotate_b(B);
-	}
-}
-
-void	start_sort(t_stack **A, t_stack **B)
-{
-	int	i;
-	int	size;
-
-	i = 0;
-	// start loading elements to pb all except biggest element ✓
-	while (list_size(*A) > 1)
-	{
-		if ((*A)->content != get_high(*A))
-		{
-			push_b(A, B);
-			sort_insertion_b(B);
-		}
-		else
-		{
+		if (get_low(*A)->above_median == 1)
 			rotate_a(A);
-		}
-		i++;
+		else
+			reverse_a(A);
 	}
-	// print_both(*A, *B);
-	size = list_size(*B);
-	// ft_printf("Size: %i\n", size);
-	while (size > 0)
+}
+
+t_stack	*get_cheapest(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
 	{
-		push_a(A, B);
-		size--;
+		if (stack->cheapest == 1)
+			return (stack);
+		stack = stack->next;
 	}
-	// ft_printf("Moves: %i\n", i);
-	//		..
+	return (NULL);
+}
 
-	//		calculation and push?
+void	set_cheapest(t_stack *stack)
+{
+	long	cheapest_value;
+	t_stack	*cheapest_node;
 
-	//		insertion algo
-	// compare if prev is bigger and next is smaller
-	// calculate if reverse or normal insertion is cheaper
-	// if node is smaller than last element use rotate
-	// if condition is met don't shift through elements anymore
-	// shift = swap -> rotate | after condition is met reverse back
-
-	return ;
+	if (!stack)
+		return ;
+	cheapest_value = LONG_MAX;
+	while (stack)
+	{
+		if (stack->cost < cheapest_value)
+		{
+			cheapest_value = stack->cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest_node->cheapest = 1;
 }

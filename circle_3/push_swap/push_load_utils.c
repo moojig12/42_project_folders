@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 08:14:47 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 18:40:54 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:14:37 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,22 @@ void	check_double(t_stack *A)
 
 	temp = A;
 	fast_temp = A->next;
-	while (temp->next != NULL)
+	while (temp)
 	{
 		fast_temp = temp->next;
-		while (fast_temp->next != NULL)
+		while (fast_temp)
 		{
 			if (fast_temp->content == temp->content)
 			{
-				// ft_printf("fast:%i | temp:%i\n", fast_temp->content, temp->content);
+				free_stack(&A);
 				error("List has doubles!");
 			}
 			fast_temp = fast_temp->next;
+		}
+		if (temp->content > INT_MAX || temp->content < INT_MIN)
+		{
+			free_stack(&A);
+			error("Meow");
 		}
 		temp = temp->next;
 	}
@@ -37,12 +42,9 @@ void	check_double(t_stack *A)
 
 int	skip_delimiter(char *string, int i)
 {
-	while (string[i] < '0' || string[i] > '9')
-	{
-		ft_printf("hekpeawfawe");
+	while ((string[i] < '0' || string[i] > '9') \
+	&& (string[i] != '-' && string[i] != '+'))
 		i++;
-	}
-	ft_printf("here: %c, %i\n", string[i], i);
 	return (i);
 }
 

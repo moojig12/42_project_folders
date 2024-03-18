@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 17:49:16 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:42 by nmandakh         ###   ########.fr       */
+/*   Created: 2024/02/26 08:14:57 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/29 18:49:19 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	swap_b(t_stack **B)
 	ft_printf("sb\n");
 }
 
-void	swap_r(t_stack **A, t_stack **B)
+void	swap_s(t_stack **A, t_stack **B)
 {
 	swap(A);
 	swap(B);
