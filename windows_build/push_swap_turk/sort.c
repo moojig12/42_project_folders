@@ -18,9 +18,9 @@ void	turk_sort(t_stack **A, t_stack **B)
 
 	size_a = list_size(*A);
 	//	push 2 elements to B
-	while (list_size(*A) > 3 && list_size(*B) <= 2)
+	while (list_size(*A) > 3 && list_size(*B) <= 1)
 		push_b(A, B);
-	sort_three(B);
+	// sort_three(B);
 	//	initiate first part
 	while (--size_a > 3)
 	{
@@ -77,22 +77,25 @@ void	find_target_a(t_stack *A, t_stack *B)
 	//	start while loop for each node
 	while (A)
 	{
-		i = A->content;
+		i = INT_MIN;
 		cursor_b = B;
+		printf("A->content: %i\n", A->content);
 		while (cursor_b)
 		{
-			ft_printf("B >? A: %i | %i\n", cursor_b->content, A->content);
+			printf("%i\n", cursor_b->content);
+			printf("what is this: %i\n", i);
 			if (cursor_b->content < A->content \
 			&& cursor_b->content > i) // if node is smaller than A and bigger than last target
 			{
 				A->target = cursor_b;
 				i = cursor_b->content;
-				ft_printf("target: %i\n", A->target->content);
+				printf("target: %i\n", A->target->content);
 			}
 			cursor_b = cursor_b->next;
 		}
 		if (i == A->content)
-			A->target-> = get_high(B);
+			A->target = get_high(B);
+		printf("target value: %i\n", A->target->content);
 		A = A->next;
 	}
 }
@@ -106,7 +109,7 @@ void	find_target_b(t_stack *A, t_stack *B)
 	//	start while loop for each node
 	while (B)
 	{
-		i = B->content;
+		i = INT_MAX;
 		cursor_a = A;
 		while (cursor_a)
 		{
@@ -135,9 +138,10 @@ void	calculate_costs(t_stack *A, t_stack *B)
 	median_b = list_size(B) / 2;
 	while (A)
 	{
+		A->cost = i;
 		if (A->above_median == 1)
 		{
-			A->cost = i;
+			A->cost += A->target->index;
 		}
 		else
 		{

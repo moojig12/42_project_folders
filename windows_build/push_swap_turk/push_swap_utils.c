@@ -1,65 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/26 08:11:05 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/28 20:26:27 by nmandakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	swap(t_stack **stack)
+t_stack	*last_node(t_stack *stack)
 {
-	if (!*stack || !(*stack)->next)
-		return ;
-	*stack = (*stack)->next;
-	(*stack)->prev->prev = *stack;
-	(*stack)->prev->next = (*stack)->next;
-	if ((*stack)->next)
-		(*stack)->next->prev = (*stack)->prev;
-	(*stack)->next = (*stack)->prev;
-	(*stack)->prev = NULL;
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }
 
-void	push(t_stack **stack, t_stack **node)
+void	print_list(t_stack *stack)
 {
-	t_stack	*push_node;
+	t_stack	*temp;
+	int		i;
 
-	if (node == NULL)
+	i = 1;
+	if (!stack)
+	{
+		printf("list empty\n");
 		return ;
-	push_node = *node;
-	*node = (*node)->next;
-	if (*node)
-		(*node)->prev = NULL;
-	push_node->prev = NULL;
-	if (*stack == NULL)
-	{
-		*stack = push_node;
-		push_node->next = NULL;
 	}
-	else
+	temp = stack;
+	while (temp)
 	{
-		push_node->next = *stack;
-		push_node->next->prev = push_node;
-		*stack = push_node;
+		printf("position: %i\n%i\n", i, temp->content);
+		printf("cost: %i\n", temp->cost);
+		printf("target: %i\n", stack->target->content);
+		printf("\n");
+		i++;
+		temp = temp->next;
 	}
 }
 
-void	reverse(t_stack **stack)
+void	print_both(t_stack *A, t_stack *B)
 {
-	t_stack	*last;
-
-	if (!*stack || !(*stack)->next)
-		return ;
-	last = list_last(*stack);
-	last->prev->next = NULL;
-	last->next = NULL;
-	*stack = last;
-	last->next->prev = NULL;
-}
-
-void	rotate(t_stack **stack)
-{
-	t_stack	*last;
-
-	if (!*stack || !(*stack)->next)
-		return ;
-	last = list_last(*stack);
-	last->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	last->next->prev = last;
-	last->next->next = NULL;
+	printf("Stack A\n");
+	print_list(A);
+	printf("Stack B\n");
+	print_list(B);
 }

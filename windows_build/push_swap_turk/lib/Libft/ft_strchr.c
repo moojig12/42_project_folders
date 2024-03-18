@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 08:14:54 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 16:33:18 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/14 14:14:30 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/17 13:43:03 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+char	*ft_strchr(const char *s, int c)
 {
-	reverse(A);
-	print_list(*A);
-	printf("rra\n");
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	else
+		return (NULL);
 }
-
-void	reverse_b(t_stack **B)
+/* 
+int	main()
 {
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
-}
+	const char *s = "meow";
+	char *r = ft_strchr(s, 111);
+	r++;
+} */

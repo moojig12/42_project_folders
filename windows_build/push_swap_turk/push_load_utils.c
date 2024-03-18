@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_load_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/26 08:14:47 by nmandakh          #+#    #+#             */
+/*   Updated: 2024/02/28 18:40:54 by nmandakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	check_double(t_stack *A)
@@ -14,7 +26,7 @@ void	check_double(t_stack *A)
 		{
 			if (fast_temp->content == temp->content)
 			{
-				// ft_printf("fast:%i | temp:%i\n", fast_temp->content, temp->content);
+				// printf("fast:%i | temp:%i\n", fast_temp->content, temp->content);
 				error("List has doubles!");
 			}
 			fast_temp = fast_temp->next;
@@ -23,31 +35,54 @@ void	check_double(t_stack *A)
 	}
 }
 
-void	skip_delimiter(char *string, int *i)
+int	skip_delimiter(char *string, int i)
 {
-	while (string[(*i)] < '0' || string[(*i)] > '9')
+	while (string[i] < '0' || string[i] > '9')
 	{
-		(*i)++;
+		printf("hekpeawfawe");
+		i++;
 	}
+	printf("here: %c, %i\n", string[i], i);
+	return (i);
 }
 
-void	append_node(t_stack **stack, int content)
+static t_stack	*allocate_node(long content)
 {
-	t_stack	*node;
+	t_stack	*new;
+
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	new->prev = NULL;
+	new->above_median = INT_MAX;
+	new->cheapest = INT_MAX;
+	new->cost = INT_MAX;
+	new->index = INT_MIN;
+	new->target = NULL;
+	return (new);
+}
+
+void	append_node(t_stack **stack, long content)
+{
+	t_stack	*new;
+	t_stack	*last;
 
 	if (!stack)
 		return ;
-	node = (t_stack *)malloc(sizeof(t_stack));
-	if (!node)
-		return ;
-	
+	new = allocate_node(content);
 	if (!stack || !*stack)
-		*stack = node;
+	{
+		*stack = new;
+		new->prev = NULL;
+	}
 	else
 	{
-		(*stack)->prev = node;
-		node->next = (*stack);
-		*stack = node;
+		last = last_node(*stack);
+		last->next = new;
+		new->prev = last;
+		new->next = NULL;
 	}
 	return ;
 }

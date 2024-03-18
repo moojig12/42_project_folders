@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_op.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 08:14:54 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/02/28 16:33:18 by nmandakh         ###   ########.fr       */
+/*   Created: 2023/11/15 18:26:11 by nmandakh          #+#    #+#             */
+/*   Updated: 2023/11/17 12:01:15 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	reverse_a(t_stack **A)
+char	*ft_strdup(const char *s)
 {
-	reverse(A);
-	print_list(*A);
-	printf("rra\n");
-}
+	char	*temp;
+	size_t	i;
 
-void	reverse_b(t_stack **B)
-{
-	reverse(B);
-	printf("rrb\n");
-}
-
-void	reverse_r(t_stack **A, t_stack **B)
-{
-	reverse(A);
-	reverse(B);
-	printf("rrr\n");
+	temp = (char *)malloc(ft_strlen(s) + 1);
+	i = 0;
+	if (temp == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		temp[i] = s[i];
+		i++;
+	}
+	temp[i] = '\0';
+	return (temp);
 }
