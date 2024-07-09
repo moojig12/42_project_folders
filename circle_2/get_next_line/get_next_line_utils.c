@@ -6,7 +6,7 @@
 /*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:21:23 by nmandakh          #+#    #+#             */
-/*   Updated: 2023/12/16 19:25:25 by nmandakh         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:23:07 by nmandakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	size2 = gnl_strlen(s2);
 	new_string = (char *)malloc((size1 + size2 + 1) * sizeof(char));
 	if (new_string == NULL)
-	{
 		return (NULL);
-	}
 	gnl_loop(new_string, s1, s2);
 	return (new_string);
 }
