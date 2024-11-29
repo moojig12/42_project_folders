@@ -1,0 +1,6 @@
+[submodule "circle_4/cpp"]
+	path = circle_4/cpp
+	url = https://github.com/moojig12/cpp_modules.git
+[submodule "circle_4/miniRT"]
+	path = circle_4/miniRT
+	url = https://github.com/moojig12/42-MiniRT.git
