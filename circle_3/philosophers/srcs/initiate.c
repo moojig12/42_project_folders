@@ -1,75 +1,67 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   initiate.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 13:51:22 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/06/25 13:51:23 by nmandakh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philo.h"
 
-static void	save_input(t_program *program, char **argv)
+t_input	*save_input(char **argv)
 {
-	program->time_to_die = ph_atoi(argv[2]);
-	program->time_to_eat = ph_atoi(argv[3]);
-	program->time_to_sleep = ph_atoi(argv[4]);
-	program->philo_count = ph_atoi(argv[1]);
+	t_input	*input;
+
+	input = (t_input *)malloc(sizeof(t_input));
+	input->philo_count = ph_atoi(argv[1]);
+	input->time_to_die = ph_atoi(argv[2]);
+	input->time_to_eat = ph_atoi(argv[3]);
+	input->time_to_sleep = ph_atoi(argv[4]);
 	if (argv[5])
-		program->times_to_eat_count = ph_atoi(argv[5]);
+		input->must_eat = ph_atoi(argv[5]);
 	else
-		program->times_to_eat_count = INT_MIN;
+		input->must_eat = INT_MIN;
+	return (input);
 }
 
-void	initiate_program(t_program *program, t_philo *philo, char **argv)
+void	allocate_forks(pthread_mutex_t *forks, t_input input)
 {
-	save_input(program, argv);
-	program->found_dead = 0;
+	int	i;
+
+	i = 0;
+	while (i < input.philo_count)
+	{
+		if (pthread_mutex_init(&forks[i], NULL))
+			printf("Fork mutex init error\n");
+		i++;
+	}
+}
+
+void	allocate_philo(t_philo *philo, t_program *program, t_input *input)
+{
+	int	i;
+
+	i = 0;
+	while (i < input->philo_count)
+	{
+		philo[i].id = i + 1;
+		philo[i].philo_count = input->philo_count;
+		philo[i].start_time = philo[i].last_eaten = get_time();
+		philo[i].times_eaten = 0;
+		philo[i].input = input;
+		philo[i].eating = 0;
+		philo[i].dead = &program->dead_flag;
+		philo[i].left_fork = &program->forks[i];
+		philo[i].dead_lock = &program->dead_lock;
+		philo[i].write_lock = &program->write_lock;
+		philo[i].meal_lock = &program->meal_lock;
+		if (i == 0)
+			philo[i].right_fork = &program->forks[input->philo_count - 1];
+		else
+			philo[i].right_fork = &program->forks[i - 1];
+		i++;
+	}
 	program->philo = philo;
+}
+
+void	initiate_program(t_program *program, t_philo *philo, t_input *input)
+{
+	program->dead_flag = 0;
 	pthread_mutex_init(&program->write_lock, NULL);
 	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->meal_lock, NULL);
-	return ;
-}
-
-void	initiate_forks(pthread_mutex_t *forks, int philo_count)
-{
-	int	i;
-
-	i = 0;
-	while (i < philo_count)
-	{
-		pthread_mutex_init(&forks[i], NULL);
-		i++;
-	}
-}
-
-void	initiate_philosophers(t_philo *philo,t_program *program, pthread_mutex_t *forks)
-{
-	int	i;
-
-	i = 0;
-	while (i < program->philo_count)
-	{
-		philo[i].id = i + 1;
-		philo[i].eating = 0;
-		philo[i].state = &program->found_dead;
-		philo[i].last_meal = get_current_time();
-		philo[i].start_time = get_current_time();
-		philo[i].time_to_die = program->time_to_die;
-		philo[i].time_to_eat = program->time_to_eat;
-		philo[i].time_to_sleep = program->time_to_sleep;
-		philo[i].meal_lock = &program->meal_lock;
-		philo[i].dead_lock = &program->dead_lock;
-		philo[i].write_lock = &program->write_lock;
-		philo[i].left_fork = &forks[i];
-		if (i == 0)
-			philo[i].right_fork = &forks[program->philo_count - 1];
-		else
-			philo[i].right_fork = &forks[i - 1];
-		i++;
-	}
+	allocate_forks(program->forks, *input);
+	allocate_philo(philo, program, input);
 }

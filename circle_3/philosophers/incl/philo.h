@@ -1,65 +1,69 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# define MAX 200
-# define TRUE 1
-# define FALSE 0
-
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <pthread.h>
-# include <sys/time.h>
-# include <stdbool.h>
+# include <stdio.h>
 # include <limits.h>
+# include <sys/time.h>
+# include <pthread.h>
+# include <stdlib.h>
+
+typedef struct s_input {
+	int	philo_count;
+	int time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	must_eat;
+}	t_input;
 
 typedef struct s_philo {
-	pthread_t	thread;
-	int		id;
-	int		state;
-	int		eating;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		meals_eaten;
-	int		meals_to_eat;
-	int		start_time;
-	int		last_meal;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*write_lock;
+	pthread_t		thread;
+	int				id;
+	int				philo_count;
+	long			start_time;
+	long			last_eaten;
+	int				times_eaten;
+	int				eating;
+	int				*dead;
+	t_input			*input;
 	pthread_mutex_t	*dead_lock;
+	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*meal_lock;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }	t_philo;
 
 typedef struct s_program {
-	pthread_t	*philo;
-	int	philo_count;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	times_to_eat_count;
-	int	found_dead;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
-	pthread_mutex_t	*write_lock;
+	int				dead_flag;
+	t_philo			*philo;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	write_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	*forks;
+	// t_input			*input;
 }	t_program;
 
 // threads
-void	start_threads(t_program *program, pthread_mutex_t *forks);
+void	create_threads(t_program *program, t_philo *philo, t_input *input);
 
-// monitor
-void	monitor(void);
+// routine
+void	*routine(void *ptr);
+void	*monitor(void *ptr);
+int		dead_loop(t_philo *philo);
+
+// initiate
+void	initiate_program(t_program *program, t_philo *philo, t_input *input);
+t_input	*save_input(char **argv);
+void	philo_message(char *message, t_philo *philo);
 
 // check
-int	check_num(char *argv);
-int	preliminary_check(int argc, char **argv);
+int		pre_check(int argc, char **argv);
 
-// time
-size_t	get_current_time(void);
-
-// misc
-int	ph_atoi(char *input);
-int	ph_print(char *message, int fd);
+// utils
+int		ft_usleep(long milliseconds);
+int		ph_atoi(char *input);
+void	destroy_all(t_program *program);
+long	get_time();
+long	get_current_time(t_philo *philo);
 
 #endif

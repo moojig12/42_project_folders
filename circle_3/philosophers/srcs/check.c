@@ -1,47 +1,42 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nmandakh <nmandakh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 13:51:25 by nmandakh          #+#    #+#             */
-/*   Updated: 2024/06/25 13:51:25 by nmandakh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philo.h"
 
-int	check_num(char *argv)
+static int	check_for_alpha(char **argv, int argc)
 {
 	int	i;
+	int	j;
 
-	i = 1;
-	while (argv[i])
+	i = 0;
+	j = 1;
+	while (j < argc)
 	{
-		if (argv[i] < '0' || argv[i] > '9')
-			return (0);
-		i++;
+		while (argv[j][i])
+		{
+			if (argv[j][i] < '0' || argv[j][i] > '9')
+				return (1);
+			i++;
+		}
+		i = 0;
+		j++;
 	}
-	return (1);
+	return (0);
 }
 
-int	preliminary_check(int argc, char **argv)
+int	pre_check(int argc, char **argv)
 {
-	/* if (!check_numerical_value(argv, argc))
-		return (ph_print("non-numeric value detected!\n", 2)); */
-	if (argc != 5 && argc != 6)
-		return (ph_print("Wrong number of Arguments!\n", 2));
-	if (ph_atoi(argv[1]) < 1 || ph_atoi(argv[1]) > MAX || \
-	!check_num(argv[1]))
-		return (ph_print("Invalid number of Philosophers!\n", 2));
-	if (ph_atoi(argv[2]) < 1 || !check_num(argv[2]))
-		return (ph_print("Invalid time to die!\n", 2));
-	if (ph_atoi(argv[3]) < 1 || !check_num(argv[3]))
-		return (ph_print("Invalid time to eat!\n", 2));
-	if (ph_atoi(argv[4]) < 1 || !check_num(argv[4]))
-		return (ph_print("Invalid time to sleep!\n", 2));
-	if (argv[5] && (ph_atoi(argv[5]) < 0 || !check_num(argv[5])))
-		return (ph_print("Invalid number of times to eat!\n", 2));
+	if (argc < 5 || argc > 6)
+		return (printf("Invalid number of arguments\n"), 1);
+	if (check_for_alpha(argv, argc))
+		return (printf("Non-numeral found in arguments\n"), 1);
+	if (ph_atoi(argv[1]) < 1 || ph_atoi(argv[1]) > 500)
+		return (printf("Invalid number of Philosophers\n"), 1);
+	if (ph_atoi(argv[2]) < 1)
+		return (printf("Invalid time to die\n"), 1);
+	if (ph_atoi(argv[3]) < 1)
+		return (printf("Invalid time to eat\n"), 1);
+	if (ph_atoi(argv[4]) < 1)
+		return (printf("Invalid time to sleep\n"), 1);
+	if (argv[5])
+		if (ph_atoi(argv[5]) < 1)
+			return (printf("Invalid times to eat\n"), 1);
 	return (0);
 }
